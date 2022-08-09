@@ -5,8 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ShopComponent } from './shop/shop.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { OrdersComponent } from './orders/orders.component';
+
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -16,8 +15,7 @@ const routes: Routes = [
   { path:"cart", component:CartComponent },
   { path:"checkout", component:CheckoutComponent },
   { path:"shop", component:ShopComponent },
-  { path:"dashboard", component:DashboardComponent },
-  { path:"order", component:OrdersComponent },
+
   { path:"login", component:LoginComponent },
   { path:"signup", component:SignupComponent },
   { path:"forgot-password", component:ForgotPasswordComponent },
