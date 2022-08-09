@@ -17,6 +17,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SignupComponent } from './signup/signup.component';
+import { OrdersComponent } from './orders/orders.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { SignupComponent } from './signup/signup.component';
     ProductsingleComponent,
     LoginComponent,
     ForgotPasswordComponent,
-    SignupComponent
+    SignupComponent,
+    OrdersComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
