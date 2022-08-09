@@ -11,7 +11,13 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 
 import { ProductsingleComponent } from './productsingle/productsingle.component';
+
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+
+import { LoginComponent } from './login/login.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { SignupComponent } from './signup/signup.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +29,9 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     HeaderComponent,
     HomeComponent,
     ProductsingleComponent,
-
+    LoginComponent,
+    ForgotPasswordComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
