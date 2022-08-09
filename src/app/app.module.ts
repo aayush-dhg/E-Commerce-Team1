@@ -9,7 +9,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { ProduuctsingleComponent } from './produuctsingle/produuctsingle.component';
+
 import { ProductsingleComponent } from './productsingle/productsingle.component';
 import { LoginComponent } from './login/login.component';
 
@@ -22,7 +22,6 @@ import { LoginComponent } from './login/login.component';
     FooterComponent,
     HeaderComponent,
     HomeComponent,
-    ProduuctsingleComponent,
     ProductsingleComponent,
     LoginComponent
   ],
