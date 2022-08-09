@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductsingleComponent } from './productsingle/productsingle.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     HomeComponent,
     ProductsingleComponent,
     LoginComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
