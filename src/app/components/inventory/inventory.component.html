@@ -1,0 +1,80 @@
+<section class="page-header">
+    <div class="overly"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="content text-center">
+                    <h1 class="mb-3">Inventory</h1>
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-transparent justify-content-center">
+                            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Inventory</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="user-dashboard page-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5 col-sm-12 col-lg-3">
+                <div class="nav flex-column nav-pills">
+                    <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+                </div>
+                <div class="nav flex-column nav-pills">
+                    <a class="nav-link" routerLink="/profile-details">My Profile</a>
+                </div>
+                <div class="nav flex-column nav-pills">
+                    <a class="nav-link" routerLink="/orders">Orders</a>
+                </div>
+                <div class="nav flex-column nav-pills">
+                    <a class="nav-link active" routerLink="/inventory">Inventory</a>
+                </div>
+                <div class="nav flex-column nav-pills">
+                    <a class="nav-link" routerLink="/cart">Cart</a>
+                </div>
+                <div class="nav flex-column nav-pills">
+                    <a class="nav-link" routerLink="/">Log Out</a>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-7 col-sm-12 col-lg-9">
+                <form (submit)="addProduct()" [formGroup]="addProductForm"> 
+                    <input type="text" placeholder="Product Name" name="productName" formControlName="productName">
+                    <input type="text" placeholder="Price" name="price" formControlName="price">
+                    <input type="text" placeholder="Quantity" name="quantity" formControlName="quantity">
+                    <input type="hidden" name="vendorId" formControlName="vendorId" value="3">
+                    <input type="submit" value="Add" class="btn btn-success">
+                </form>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of inventory">
+                            <th scope="row">{{product.id}}</th>
+                            <td><input type="text" id="{{product.id}}_name" value="{{product.productName}}"></td>
+                            <td><input type="text" id="{{product.id}}_price" value="{{product.price}}"></td>
+                            <td><input type="text" id="{{product.id}}_qty" value="{{product.quantity}}"></td>
+                            <td>
+                                <a routerLink="/order" class="btn btn-secondary tf-ion-ios-eye"></a>
+                                <a (click)="editProduct(product)" class="btn btn-success tf-ion-ios-checkmark"></a>
+                                <a (click)="deleteProduct(product.id!)" class="btn btn-danger tf-ion-ios-trash"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

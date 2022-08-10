@@ -719,7 +719,8 @@ a.text-primary:hover {
   z-index: 9999;
 }
 
-.dropdown.cart-nav.dropdown-slide:hover .cart-dropdown {
+.dropdown.cart-nav.dropdown-slide:hover .cart-dropdown,
+.dropdown.account-nav.dropdown-slide:hover .account-dropdown {
   display: block;
   opacity: 1;
   z-index: 9999;

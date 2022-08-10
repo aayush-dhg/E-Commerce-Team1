@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,8 +21,23 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { SignupComponent } from './components/signup/signup.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { InventoryComponent } from './components/inventory/inventory.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
-
+const appRoutes: Routes = [
+  { path: "", component: AppComponent },
+  { path: "home", component: AppComponent },
+  { path: "shop", component: ShopComponent },
+  //{ path: "aboutus", component:  },
+  { path: "login", component: LoginComponent },
+  { path: "signup", component: SignupComponent },
+  { path: "forgot-password", component: ForgotPasswordComponent },
+  { path: "dashboard", component: DashboardComponent },
+  { path: "cart", component: CartComponent },
+  { path: "checkout", component: CheckoutComponent },
+  { path: "orders", component: OrdersComponent },
+  { path: "inventory", component: InventoryComponent }
+]
 
 @NgModule({
   declarations: [
@@ -37,13 +54,17 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     SignupComponent,
 
     OrdersComponent,
-    DashboardComponent
+    DashboardComponent,
+    InventoryComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
