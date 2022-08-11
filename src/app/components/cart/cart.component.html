@@ -1,1 +1,10 @@
-<p>cart works!</p>
+<div class="customerCart">
+    Your cart: 
+    <div class="productsInCart" *ngFor="let p of products">
+        <h3>{{p.productName}}</h3> &nbsp;&nbsp;&nbsp;&nbsp;
+        Cost: {{p.price}}
+        <hr>
+    </div>
+    Total Price: {{customerCart.totalPrice}}
+
+</div>
