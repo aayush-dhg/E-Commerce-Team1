@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserDto } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-signup',
@@ -7,12 +8,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  customerForm: FormGroup;
-  
+  signUpForm: FormGroup;
+  userDto: UserDto;
+    
   constructor() { }
 
   ngOnInit(): void {
-    this.customerForm = new FormGroup({
+    this.signUpForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]),
       username: new FormControl(''),
       password: new FormControl(''),
@@ -23,7 +25,17 @@ export class SignupComponent implements OnInit {
   }
 
   onFormSubmit(){
+    this.userDto={
+      name: this.signUpForm.value.name,
+      role: this.signUpForm.value.role,
+      securityAnswer: this.signUpForm.value.securityAnswer,
+      securityQuestion: this.signUpForm.value.securityQuestion,
+      encodedCredentials: btoa(this.signUpForm.value.username
+        + '@%' + this.signUpForm.value.password)
+    }
+    //aGFycnkrPStwb3R0ZXI=
+    console.log(this.userDto);
 
-  }
+}
 
 }
