@@ -10,6 +10,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { ProductsComponent } from './components/products/products.component';
 const routes: Routes = [
   { path:"", component:HomeComponent },
   { path:"product-single", component:ProductsingleComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path:"login", component:LoginComponent },
   { path:"signup", component:SignupComponent },
   { path:"forgot-password", component:ForgotPasswordComponent },
+  { path: "product", component: ProductsComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

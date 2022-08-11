@@ -1,18 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Product } from '../models/product.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Product, Stat } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:8282/products';
-  product:Product[] = [];
+  
+  postApi: string;
+  getAllApi: string;
+  getStatsApi: string;
 
-  constructor(private http:HttpClient) { }
+  product$ = new BehaviorSubject<Product[]>([]);
+  page$ = new BehaviorSubject<number>(0);
+  stat$ = new BehaviorSubject<Boolean>(false);
 
-  getAllProducts(): Observable<Product[]>{
-    return this.http.get<Product[]>(this.apiUrl);
+
+  constructor(private http:HttpClient) { 
+    this.postApi = "http://localhost:7047/employee";
+    this.getAllApi = "http://localhost:7047/employee";
+    this.getStatsApi = "http://localhost:7047/employee";
+    }
+
+  public postProduct(product: Product):Observable<Product>{
+    return this.http.post<Product>(this.postApi, product);
+  }
+
+  getAllProducts(page : number, size: number): Observable<Product[]>{
+    return this.http.get<Product[]>
+    (this.getAllApi + '?page='+ page + '&size=' + size);
+  }
+  getProductStats():Observable<Stat[]>{
+    return this.http.get<Stat[]>(this.getStatsApi);
   }
 }
