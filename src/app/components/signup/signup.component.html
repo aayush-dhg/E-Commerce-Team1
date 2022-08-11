@@ -11,7 +11,7 @@
             <form (submit) ="onFormSubmit()" [formGroup] = "signUpForm"> 
               <div class="form-group mb-4">
                 <label for="#">Sign Up As:</label> &nbsp; &nbsp; &nbsp;
-                <select id ="usertype" name="usertype" class="form-control" >
+                <select id ="role" name="role" class="form-control" formControlName="role">
                   <option value = "customer">Customer</option>
                   <option value = "vendor">Vendor</option>
                 </select>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserDto } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -25,6 +25,7 @@ export class SignupComponent implements OnInit {
       securityQuestion: new FormControl(''),
       securityAnswer: new FormControl('')
     });
+
   }
 
   onFormSubmit(){
