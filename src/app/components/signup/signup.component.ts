@@ -16,6 +16,7 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]),
+      role: new FormControl(''),
       username: new FormControl(''),
       password: new FormControl(''),
       balance: new FormControl('', [Validators.pattern(/^[0-9 ]+$/)]),
