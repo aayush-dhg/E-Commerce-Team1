@@ -1,3 +1,4 @@
+import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Product } from 'src/app/models/product.model';
@@ -11,39 +12,62 @@ import { VendorService } from '../../services/vendor.service';
 })
 export class InventoryComponent implements OnInit {
   inventory:Product[] = [];
-  addProductForm: FormGroup;
+  product:Product;
+
+  alertMessage:string;
 
   constructor(private vendorService: VendorService) { }
 
   ngOnInit(): void {
 
+    //get inventory
     sessionStorage.setItem("vendorId", "3");  //TODO assign vendorId dynamically on login
     this.vendorService.getInventory(parseInt(sessionStorage.getItem("vendorId")!)).subscribe((products) => {
       this.inventory = products;
     });
-
-    this.addProductForm = new FormGroup({
-      productName: new FormControl(''),
-      price: new FormControl(''),
-      quantity: new FormControl(''),
-      vendorId: new FormControl(''),
-    });
   }
 
   addProduct(): void{
-    this.vendorService.addProduct(this.addProductForm).subscribe(() => {
-      this.inventory.push(this.addProductForm.value);
+    this.product = {
+      productName: <string>$('#addProduct_name').val(),
+      price: <number>$('#addProduct_price').val(),
+      quantity: <number>$('#addProduct_qty').val(),
+      vendorId: +sessionStorage.getItem("vendorId")!
+    }
+
+    this.vendorService.addProduct(this.product).subscribe(() => {
+      this.inventory.push(this.product);
+      this.alertMessage = "Product has been added.";
+      $('#successMessage').fadeToggle(0,"linear", ()=>{
+        $('#successMessage').fadeToggle(5000)
+      });
     })
   }
 
-  editProduct(product:Product): void{
-    this.vendorService.editProduct(product).subscribe(() => {
+  editProduct(productId:number): void{
+    this.product = {
+      id: productId,
+      productName: <string>$(`#${productId}_name`).val(),
+      price: <number>$(`#${productId}_price`).val(),
+      quantity: <number>$(`#${productId}_qty`).val(),
+      vendorId: +sessionStorage.getItem("vendorId")!
+    }
+
+    this.vendorService.editProduct(this.product).subscribe(() => {
+      this.alertMessage = "Product has been modified.";
+      $('#successMessage').fadeToggle(0,"linear", ()=>{
+        $('#successMessage').fadeToggle(5000)
+      });
     })
   }
 
-  deleteProduct(productId:String): void{
+  deleteProduct(productId:number): void{
     this.vendorService.deleteProduct(productId).subscribe(() => {
-      this.inventory = this.inventory.filter(p => p.id !== productId );
+      this.inventory.filter(p => +(p.id!) !== +productId );
+      this.alertMessage = "Product has been deleted.";
+      $('#successMessage').fadeToggle(0,"linear", ()=>{
+        $('#successMessage').fadeToggle(5000)
+      });
     })
   }
 

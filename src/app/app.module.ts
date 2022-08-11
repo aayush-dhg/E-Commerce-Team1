@@ -23,6 +23,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 
 const appRoutes: Routes = [
   { path: "", component: AppComponent },
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
   { path: "cart", component: CartComponent },
   { path: "checkout", component: CheckoutComponent },
   { path: "orders", component: OrdersComponent },
-  { path: "inventory", component: InventoryComponent }
+  { path: "inventory", component: InventoryComponent },
+  { path: "profile-details", component: ProfileDetailsComponent }
 ]
 
 @NgModule({
@@ -55,7 +57,8 @@ const appRoutes: Routes = [
 
     OrdersComponent,
     DashboardComponent,
-    InventoryComponent
+    InventoryComponent,
+    ProfileDetailsComponent
 
   ],
   imports: [
