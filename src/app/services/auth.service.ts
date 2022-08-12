@@ -37,7 +37,8 @@ export class AuthService {
         'Authorization' : 'basic ' + encodedCredentials
       })
     };
-
+    console.log(username);
+    console.log(encodedCredentials);
      return this.http.get<User>(this.loginApi, httpOptions);
   }
 
