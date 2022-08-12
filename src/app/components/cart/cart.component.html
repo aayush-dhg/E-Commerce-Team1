@@ -1,8 +1,11 @@
 <div class="customerCart">
     Your cart: 
+    {{message}}
     <div class="productsInCart" *ngFor="let p of products">
-        <h3>{{p.productName}}</h3> &nbsp;&nbsp;&nbsp;&nbsp;
+        {{p.productName}} 
+        &nbsp;&nbsp;&nbsp;&nbsp;
         Cost: {{p.price}}
+        <button (click)="onDeleteProduct(p.id)">Delete</button>
         <hr>
     </div>
     Total Price: {{customerCart.totalPrice}}
