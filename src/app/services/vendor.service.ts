@@ -31,8 +31,10 @@ export class VendorService {
     return this.http.get<Vendor>(`${this.apiUrl}/vendor/${vendorId}`);
   }
 
-  getInventory(vendorId:number): Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.apiUrl}/vendor/${vendorId}/inventory`);
+  getInventory(vendorId:number, filterBy?:string, queryParam?:string): Observable<Product[]>{
+    let url:string = (filterBy == undefined && queryParam == undefined) ? `${this.apiUrl}/vendor/${vendorId}/inventory`
+      : `${this.apiUrl}/vendor/${vendorId}/inventory?filterBy=${filterBy}&queryParam=${queryParam}`;
+    return this.http.get<Product[]>(url);
   }
 
   getOrderHistory(vendorId:number): Observable<Orders[]>{

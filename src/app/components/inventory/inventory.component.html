@@ -47,6 +47,10 @@
                 <div class="alert alert-success collapse" id="successMessage">
                     <strong>Success!</strong> {{alertMessage}}
                 </div>
+
+                <input type="text" placeholder="Search" id="queryParam">
+                <a class="btn btn-secondary" (click)="filterInventory('productName')">Search</a>
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
