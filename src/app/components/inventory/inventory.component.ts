@@ -13,6 +13,7 @@ import { VendorService } from '../../services/vendor.service';
 export class InventoryComponent implements OnInit {
   inventory:Product[] = [];
   product:Product;
+  userId:number;
 
   alertMessage:string;
 
@@ -22,7 +23,8 @@ export class InventoryComponent implements OnInit {
 
     //get inventory
     sessionStorage.setItem("vendorId", "3");  //TODO assign vendorId dynamically on login
-    this.vendorService.getInventory(parseInt(sessionStorage.getItem("vendorId")!)).subscribe((products) => {
+    this.userId = parseInt(sessionStorage.getItem("vendorId")!);
+    this.vendorService.getInventory(this.userId).subscribe((products) => {
       this.inventory = products;
     });
   }
@@ -69,6 +71,13 @@ export class InventoryComponent implements OnInit {
         $('#successMessage').fadeToggle(5000)
       });
     })
+  }
+
+  filterInventory(filterBy:string):void{
+    let queryParam:string = <string>$('#queryParam').val();
+    this.vendorService.getInventory(this.userId, filterBy, queryParam).subscribe((products) => {
+      this.inventory = products;
+    });
   }
 
 }
