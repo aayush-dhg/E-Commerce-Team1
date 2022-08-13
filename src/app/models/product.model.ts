@@ -1,9 +1,11 @@
 export class Product{
     id?: number;
     productName: string;
-    price: number;
-    quantity: number;
-    vendorId: number;
+    name?: string;
+    price?: number;
+    quantity?: number;
+    categoryName?: string;
+    vendorId?: number;
     vendorName?: string;
 }
 
