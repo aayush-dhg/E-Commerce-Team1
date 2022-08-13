@@ -3,12 +3,15 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CustomerCart } from '../models/customerCart.model';
+import { Product } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerCartService {
 
+  products$ = new BehaviorSubject<Product[]>([]);
+  totalPrice$ = new BehaviorSubject<number>(0);
   getCartApi: string;
   createCartApi: string;
   deleteProductApi: string;
