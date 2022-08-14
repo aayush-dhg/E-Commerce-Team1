@@ -4,6 +4,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Product } from 'src/app/models/product.model';
 
 import { VendorService } from '../../services/vendor.service';
+import { Category } from 'src/app/models/category.model';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-inventory',
@@ -13,17 +15,21 @@ import { VendorService } from '../../services/vendor.service';
 export class InventoryComponent implements OnInit {
   inventory:Product[] = [];
   product:Product;
+  categories:Category[] = [];
   userId:number;
 
   alertMessage:string;
 
-  constructor(private vendorService: VendorService) { }
+  constructor(private vendorService: VendorService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
 
     //get inventory
     sessionStorage.setItem("vendorId", "3");  //TODO assign vendorId dynamically on login
     this.userId = parseInt(sessionStorage.getItem("vendorId")!);
+    this.categoryService.getCategories().subscribe((categories) => {
+      this.categories = categories;
+    });
     this.vendorService.getInventory(this.userId).subscribe((products) => {
       this.inventory = products;
     });
@@ -34,15 +40,21 @@ export class InventoryComponent implements OnInit {
       productName: <string>$('#addProduct_name').val(),
       price: <number>$('#addProduct_price').val(),
       quantity: <number>$('#addProduct_qty').val(),
-      vendorId: +sessionStorage.getItem("vendorId")!
+      vendorId: +sessionStorage.getItem("vendorId")!,
+      category: {
+        id: $('#categories option').filter(function() {
+            return (<HTMLOptionElement>this).value == $('#addProduct_category').val();
+        }).attr('categoryId'),
+        name: <string>$('#addProduct_category').val()!
+      }
     }
-
     this.vendorService.addProduct(this.product).subscribe(() => {
       this.inventory.push(this.product);
       this.alertMessage = "Product has been added.";
       $('#successMessage').fadeToggle(0,"linear", ()=>{
         $('#successMessage').fadeToggle(5000)
       });
+      $('.addProduct_form input').val("");
     })
   }
 
@@ -52,7 +64,13 @@ export class InventoryComponent implements OnInit {
       productName: <string>$(`#${productId}_name`).val(),
       price: <number>$(`#${productId}_price`).val(),
       quantity: <number>$(`#${productId}_qty`).val(),
-      vendorId: +sessionStorage.getItem("vendorId")!
+      vendorId: +sessionStorage.getItem("vendorId")!,
+      category: {
+        id: $('#categories option').filter(function() {
+          return (<HTMLOptionElement>this).value == $(`#${productId}_category`).val();
+        }).attr('categoryId'),
+        name: <string>$(`#${productId}_category`).val()!
+      }
     }
 
     this.vendorService.editProduct(this.product).subscribe(() => {

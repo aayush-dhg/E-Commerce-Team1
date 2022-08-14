@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
+import { CustomerCartService } from 'src/app/services/customer-cart.service';
 
 @Component({
   selector: 'app-shop',
@@ -17,7 +18,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[];
   
 
-  constructor(private productService : ProductService) {
+  constructor(private productService : ProductService, private cartService: CustomerCartService) {
 
    }
 
@@ -42,6 +43,7 @@ export class ShopComponent implements OnInit, OnDestroy {
           })
         );
   }
+
   sortPrice(flag:number): void{
     this.productService.sortPrice(this.product,flag);
   }
@@ -51,4 +53,11 @@ export class ShopComponent implements OnInit, OnDestroy {
  }
 
 
+  createCart():void{
+    this.cartService.createCart().subscribe(()=>{});
+  }
+
+  addToCart():void{
+    this.cartService.addToCart().subscribe(()=>{});
+  }
 }

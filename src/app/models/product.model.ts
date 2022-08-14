@@ -1,10 +1,12 @@
+import { Category } from "./category.model";
+
 export class Product{
     id?: number;
     productName: string;
     name?: string;
     price?: number;
     quantity?: number;
-    categoryName?: string;
+    category:Category;
     vendorId?: number;
     vendorName?: string;
 }

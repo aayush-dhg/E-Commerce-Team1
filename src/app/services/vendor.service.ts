@@ -32,8 +32,8 @@ export class VendorService {
   }
 
   getInventory(vendorId:number, filterBy?:string, queryParam?:string): Observable<Product[]>{
-    let url:string = (filterBy == undefined && queryParam == undefined) ? `${this.apiUrl}/vendor/${vendorId}/inventory`
-      : `${this.apiUrl}/vendor/${vendorId}/inventory?filterBy=${filterBy}&queryParam=${queryParam}`;
+    let url:string = (filterBy != undefined && queryParam != undefined) ? `${this.apiUrl}/vendor/${vendorId}/inventory?filterBy=${filterBy}&queryParam=${queryParam}`
+      : `${this.apiUrl}/vendor/${vendorId}/inventory`;
     return this.http.get<Product[]>(url);
   }
 
@@ -42,7 +42,8 @@ export class VendorService {
   }
 
   addProduct(product:Product): Observable<Product>{
-    return this.http.post<Product>(`${this.apiUrl}/products`, product, httpOptions);
+
+    return this.http.post<Product>(`${this.apiUrl}/product/${product.category.id == undefined ? -1 : product.category.id}/${product.vendorId}`, product, httpOptions);
   }
 
   editProduct(product:Product): Observable<Product>{
