@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +9,15 @@ import { Category } from 'src/app/models/category.model';
 })
 export class HeaderComponent implements OnInit {
   categories:Category[] = [];
+  username: string;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.username$.subscribe(data=>{
+      this.username = data;
+     console.log(this.username);
+   })
   }
 
 }

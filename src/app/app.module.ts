@@ -26,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 import { ProductsComponent } from './components/products/products.component';
 import { SortDirective } from './directive/sort.directive';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { SortDirective } from './directive/sort.directive';
     InventoryComponent,
     ProfileDetailsComponent,
     ProductsComponent,
-    SortDirective
+    SortDirective,
+    LogoutComponent
 
   ],
   imports: [
