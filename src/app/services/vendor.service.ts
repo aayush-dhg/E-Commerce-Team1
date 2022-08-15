@@ -20,10 +20,12 @@ const httpOptions = {
 export class VendorService {
 
   private apiUrl = 'http://localhost:8282';
+  vendorId: number;
 
   constructor(private http: HttpClient) { }
 
   updateVendor(vendor:Vendor):Observable<void>{
+    localStorage.getItem
     return this.http.put<void>(`${this.apiUrl}/vendor/${vendor.id}`, vendor, httpOptions);
   }
 

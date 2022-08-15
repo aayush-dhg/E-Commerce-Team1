@@ -25,10 +25,10 @@ export class CustomerCartService {
   addToCartApi: string;
 
   constructor(private http: HttpClient) {
-    this.getCartApi = environment.serverUrl+'/customer/cart/1';
-    this.createCartApi = environment.serverUrl+'/customer/cart/2';
-    this.deleteProductApi = environment.serverUrl+'/customer/cart/delete/1/'
-    this.addToCartApi = environment.serverUrl+'/customer/cart/2/5'
+    this.getCartApi = environment.serverUrl+'/customer/cart/16';
+    this.createCartApi = environment.serverUrl+'/customer/cart/16';
+    this.deleteProductApi = environment.serverUrl+'/customer/cart/delete/16/'
+    this.addToCartApi = environment.serverUrl+'/customer/cart/16/5'
   }
 
   createCart(): Observable<any>{

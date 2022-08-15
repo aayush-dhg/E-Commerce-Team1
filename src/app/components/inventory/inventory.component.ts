@@ -25,7 +25,7 @@ export class InventoryComponent implements OnInit {
   ngOnInit(): void {
 
     //get inventory
-    sessionStorage.setItem("vendorId", "3");  //TODO assign vendorId dynamically on login
+    sessionStorage.setItem("vendorId", localStorage.getItem("id"));  //TODO assign vendorId dynamically on login
     this.userId = parseInt(sessionStorage.getItem("vendorId")!);
     this.categoryService.getCategories().subscribe((categories) => {
       this.categories = categories;
