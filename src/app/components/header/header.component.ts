@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderComponent implements OnInit {
   categories:Category[] = [];
   username: string;
+  role: string;
 
   constructor(private authService: AuthService) { }
 
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
       this.username = data;
      console.log(this.username);
    })
+    this.role = localStorage.getItem("role");
   }
 
 }
