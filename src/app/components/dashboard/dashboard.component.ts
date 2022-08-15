@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
   page : number; 
   size : number; 
   subscriptions : Subscription[];
+  role: string;
 
   alertMessage : string;
 
@@ -28,6 +29,7 @@ export class DashboardComponent implements OnInit {
               private vendorService: VendorService) { }
 
   ngOnInit(): void {
+    this.role = localStorage.getItem("role");
     this.subscriptions = [];
     this.size = 5;
     this.subscriptions.push(

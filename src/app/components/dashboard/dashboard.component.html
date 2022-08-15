@@ -37,7 +37,7 @@
         <div class="nav flex-column nav-pills">
           <a class="nav-link" routerLink="/inventory">Inventory</a>
         </div>
-        <div class="nav flex-column nav-pills">
+        <div class="nav flex-column nav-pills" *ngIf="role=='customer' ">
           <a class="nav-link" routerLink="/cart">Cart</a>
         </div>
         <div class="nav flex-column nav-pills">

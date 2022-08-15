@@ -8,10 +8,12 @@ import { Category } from 'src/app/models/category.model';
 })
 export class HeaderComponent implements OnInit {
   categories:Category[] = [];
+  role: string;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.role = localStorage.getItem("role");
   }
 
 }
