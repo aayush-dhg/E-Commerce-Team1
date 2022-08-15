@@ -42,7 +42,9 @@ export class ProductService {
     if(flag == 1)
      product = product.sort((p1, p2) => p1.price - p2.price);
     else
-     product= product.sort((p1, p2) => p2.price - p2.price);
+     product= product.sort((p1, p2) => p2.price - p1.price);
      return product;
  }
+ 
+ 
 }

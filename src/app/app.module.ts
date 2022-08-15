@@ -25,6 +25,7 @@ import { InventoryComponent } from './components/inventory/inventory.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 import { ProductsComponent } from './components/products/products.component';
+import { SortDirective } from './directive/sort.directive';
 
 const appRoutes: Routes = [
   { path: "", component: AppComponent },
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     InventoryComponent,
     ProfileDetailsComponent,
-    ProductsComponent
+    ProductsComponent,
+    SortDirective
 
   ],
   imports: [
