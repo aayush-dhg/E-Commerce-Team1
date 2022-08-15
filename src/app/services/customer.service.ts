@@ -12,11 +12,13 @@ export class CustomerService {
   postApi: string;
   getAllCustomersApi: string;
   getOneCustomerApi: string;
+  updateOneCustomerApi: string;
 
   constructor(private http: HttpClient) {
     this.postApi = environment.serverUrl + '/customer';
     this.getAllCustomersApi = environment.serverUrl + '/customers';
     this.getOneCustomerApi = environment.serverUrl + '/customer/';
+    this.updateOneCustomerApi = environment.serverUrl + '/customer/';
   }
 
   postCustomer(c: Customer): Observable<Customer> {
@@ -29,5 +31,9 @@ export class CustomerService {
 
   getOneCustomer(cid: number): Observable<Customer> {
     return this.http.get<Customer>(this.getOneCustomerApi + cid);
+  }
+
+  updateCustomer(customer: Customer): Observable<any>{
+    return this.http.put<any>(this.updateOneCustomerApi+customer.id, customer);
   }
 }
