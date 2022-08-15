@@ -27,23 +27,6 @@ import { ProfileDetailsComponent } from './components/profile-details/profile-de
 import { ProductsComponent } from './components/products/products.component';
 import { SortDirective } from './directive/sort.directive';
 
-const appRoutes: Routes = [
-  { path: "", component: AppComponent },
-  { path: "home", component: AppComponent },
-  { path: "shop", component: ShopComponent },
-  //{ path: "aboutus", component:  },
-  { path: "login", component: LoginComponent },
-  { path: "signup", component: SignupComponent },
-  { path: "forgot-password", component: ForgotPasswordComponent },
-  { path: "dashboard", component: DashboardComponent },
-  { path: "cart", component: CartComponent },
-  { path: "checkout", component: CheckoutComponent },
-  { path: "orders", component: OrdersComponent },
-  { path: "inventory", component: InventoryComponent },
-  { path: "profile-details", component: ProfileDetailsComponent },
-  { path: "product", component: ProductsComponent}
-]
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +55,6 @@ const appRoutes: Routes = [
     SlickCarouselModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
