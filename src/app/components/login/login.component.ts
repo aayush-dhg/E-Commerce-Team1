@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -12,8 +14,9 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   username: string;
   password: string;
+  user: User;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
   
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -30,7 +33,13 @@ export class LoginComponent implements OnInit {
     this.password = this.loginForm.value.password;
     this.authService.login(this.username,this.password).subscribe({
       next : (data)=>{
-        console.log(data);
+        //console.log(data);
+        this.user = data;
+        localStorage.setItem('username', this.user.username);
+        localStorage.setItem('credentials', btoa(this.username + ':' + this.password));
+        localStorage.setItem('id', String(this.user.id));
+        this.authService.username$.next(this.user.username);
+        this.router.navigateByUrl('/');
       },
       error: (e)=> {
 

@@ -6,6 +6,7 @@ import { Product } from '../models/product.model';
 import { FormGroup } from '@angular/forms';
 import { Orders } from '../models/orders.model';
 import { Vendor } from '../models/vendor.model';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: 
@@ -19,38 +20,36 @@ const httpOptions = {
 })
 export class VendorService {
 
-  private apiUrl = 'http://localhost:8282';
-
   constructor(private http: HttpClient) { }
 
   updateVendor(vendor:Vendor):Observable<void>{
-    return this.http.put<void>(`${this.apiUrl}/vendor/${vendor.id}`, vendor, httpOptions);
+    return this.http.put<void>(`${environment.serverUrl}/vendor/${vendor.id}`, vendor, httpOptions);
   }
 
   getVendorById(vendorId:number):Observable<Vendor>{
-    return this.http.get<Vendor>(`${this.apiUrl}/vendor/${vendorId}`);
+    return this.http.get<Vendor>(`${environment.serverUrl}/vendor/${vendorId}`);
   }
 
   getInventory(vendorId:number, filterBy?:string, queryParam?:string): Observable<Product[]>{
-    let url:string = (filterBy != undefined && queryParam != undefined) ? `${this.apiUrl}/vendor/${vendorId}/inventory?filterBy=${filterBy}&queryParam=${queryParam}`
-      : `${this.apiUrl}/vendor/${vendorId}/inventory`;
+    let url:string = (filterBy != undefined && queryParam != undefined) ? `${environment.serverUrl}/vendor/${vendorId}/inventory?filterBy=${filterBy}&queryParam=${queryParam}`
+      : `${environment.serverUrl}/vendor/${vendorId}/inventory`;
     return this.http.get<Product[]>(url);
   }
 
   getOrderHistory(vendorId:number): Observable<Orders[]>{
-    return this.http.get<Orders[]>(`${this.apiUrl}/orders/vendor/${vendorId}`);
+    return this.http.get<Orders[]>(`${environment.serverUrl}/orders/vendor/${vendorId}`);
   }
 
   addProduct(product:Product): Observable<Product>{
 
-    return this.http.post<Product>(`${this.apiUrl}/product/${product.category.id == undefined ? -1 : product.category.id}/${product.vendorId}`, product, httpOptions);
+    return this.http.post<Product>(`${environment.serverUrl}/product/${product.category.id == undefined ? -1 : product.category.id}/${product.vendorId}`, product, httpOptions);
   }
 
   editProduct(product:Product): Observable<Product>{
-    return this.http.put<Product>(`${this.apiUrl}/products/${product.id}`, product, httpOptions);
+    return this.http.put<Product>(`${environment.serverUrl}/products/${product.id}`, product, httpOptions);
   }
 
   deleteProduct(productId:number): Observable<Product>{
-    return this.http.delete<Product>(`${this.apiUrl}/products/${productId}`);
+    return this.http.delete<Product>(`${environment.serverUrl}/products/${productId}`);
   }
 }
