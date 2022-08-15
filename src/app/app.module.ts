@@ -26,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 import { ProductsComponent } from './components/products/products.component';
 import { SortDirective } from './directive/sort.directive';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminDashboardInventoryComponent } from './components/dashboard/admin-dashboard-inventory/admin-dashboard-inventory.component';
 import { AdminDashboardCustomersComponent } from './components/dashboard/admin-dashboard-customers/admin-dashboard-customers.component';
@@ -33,6 +34,9 @@ import { AdminDashboardVendorsComponent } from './components/dashboard/admin-das
 import { AdminDashboardSalesComponent } from './components/dashboard/admin-dashboard-sales/admin-dashboard-sales.component';
 import { MatTabsModule } from '@angular/material/tabs'; 
 import { MatPaginatorModule } from '@angular/material/paginator';
+
+import { LogoutComponent } from './components/logout/logout.component';
+
 
 @NgModule({
   declarations: [
@@ -54,10 +58,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ProfileDetailsComponent,
     ProductsComponent,
     SortDirective,
+
     AdminDashboardInventoryComponent,
     AdminDashboardCustomersComponent,
     AdminDashboardVendorsComponent,
-    AdminDashboardSalesComponent
+    AdminDashboardSalesComponent,
+
+    LogoutComponent
+
 
   ],
   imports: [
