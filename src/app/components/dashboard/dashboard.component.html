@@ -1,3 +1,4 @@
+
 <section class="page-header">
   <div class="overly"></div>
   <div class="container">
@@ -47,62 +48,14 @@
 
 
       <div class="col-12 col-md-7 col-sm-12 col-lg-9">
-        
-        <h1> ADMIN DASHBOARD</h1>
-        <h2> Inventory</h2>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th scope="col" [appSort] = "product" data-order = "desc" data-name="id">
-               ID <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
-              <th scope="col" [appSort] = "product" data-order = "desc" data-name="id">
-                Name  <br/><i style="font-size:24px" class="fa">&#xf0dc;</i></th>
-              <th scope="col" [appSort] = "product" data-order = "desc" data-name="id">
-                Price <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
-              <th scope="col" [appSort] = "product" data-order = "desc" data-name="id">
-                Quantity<i style="font-size:24px" class="fa">&#xf0dc;</i></th>
-              <th scope="col" [appSort] = "product" data-order = "desc" data-name="id">
-                Category <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
-              <th scope="col" [appSort] = "product" data-order = "desc" data-name="id">
-                Vendor <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
-              <th scope="col" [appSort] = "product" data-order = "desc" data-name="id"> 
-                Sold <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
-              
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let product of product">
-              <th scope="row">{{product.id}}</th>
-              <td>
-                {{product.name}}
-              </td>
-              <td>
-                $ {{product.price}}
-              </td>
-              <td>
-                {{product.quantity}}
-              </td>
-              <td>
-                {{product.category}}
-              </td>
-              <td>
-                {{product.vendorName}}
-              </td>
-              <td>
-
-              </td>
-             
-              <td class="row-options">
-                <a routerLink="/order" class="btn btn-custom-options btn-secondary tf-ion-ios-eye"
-                  title="View {{product.productName}} Page"></a>
-                <a  class="btn btn-custom-options btn-success tf-ion-ios-checkmark"
-                  title="Save"></a>
-                <a  class="btn btn-custom-options btn-danger tf-ion-ios-trash"
-                  title="Delete"></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <h1> ADMIN DASHBOARD</h1>    
+       
+        <mat-tab-group>
+          <mat-tab label = "Inventory"> <app-admin-dashboard-inventory> </app-admin-dashboard-inventory> </mat-tab>
+          <mat-tab label = "Customers"> <app-admin-dashboard-customers> </app-admin-dashboard-customers> </mat-tab>
+          <mat-tab label = "Vendors"> <app-admin-dashboard-vendors> </app-admin-dashboard-vendors></mat-tab>
+          <mat-tab label = "Sales"> <app-admin-dashboard-sales> </app-admin-dashboard-sales> </mat-tab>
+        </mat-tab-group>
       </div>
     </div>
   </div>

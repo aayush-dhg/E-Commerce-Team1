@@ -1,0 +1,67 @@
+
+<section class="user-dashboard page-wrapper">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-12 col-md-7 col-sm-12 col-lg-9">
+                
+                <mat-paginator [length] ="100"
+                                [pageSize] = "10"
+                                [pageSizeOptions] ="[5,10,25,100]"
+                                aria-label="Select Page">
+                </mat-paginator>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col" [appSort]="product" data-order="desc" data-name="id">
+                                ID &nbsp;<i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+                            <th scope="col" [appSort]="product" data-order="desc" data-name="id">
+                                Name <br /><i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+                            <th scope="col" [appSort]="product" data-order="desc" data-name="id">
+                                Price <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+                            <th scope="col" [appSort]="product" data-order="desc" data-name="id">
+                                Quantity<i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+                            <th scope="col" [appSort]="product" data-order="desc" data-name="id">
+                                Category <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+                            <th scope="col" [appSort]="product" data-order="desc" data-name="id">
+                                Vendor <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+                            <th scope="col" [appSort]="product" data-order="desc" data-name="id">
+                                Sold <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+                            <th scope="col">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of product">
+                            <th scope="row">{{product.id}}</th>
+                            <td>
+                                {{product.name}}
+                            </td>
+                            <td>
+                                $ {{product.price}}
+                            </td>
+                            <td>
+                                {{product.quantity}}
+                            </td>
+                            <td>
+                                {{product.category}}
+                            </td>
+                            <td>
+                                {{product.vendorName}}
+                            </td>
+                            <td>
+
+                            </td>
+
+                            <td class="row-options">
+                                <a routerLink="/order" title="View {{product.productName}} Page">View </a> <br />
+                                <a title="Save">Save</a> <br/>
+                                <a title="Delete">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
