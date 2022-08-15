@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Category } from 'src/app/models/category.model';
 import { Customer } from 'src/app/models/customer.model';
+import { Product } from 'src/app/models/product.model';
 import { CustomerService } from 'src/app/services/customer.service';
+import { ProductService } from 'src/app/services/product.service';
+import { VendorService } from 'src/app/services/vendor.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,17 +16,39 @@ export class DashboardComponent implements OnInit {
 
   name: string;
   customer: Customer;
+  product: Product[];
+  page : number; 
+  size : number; 
+  subscriptions : Subscription[];
 
-  constructor(private customerService: CustomerService) { }
+  alertMessage : string;
+
+  constructor(private customerService: CustomerService, 
+              private productService: ProductService,
+              private vendorService: VendorService) { }
 
   ngOnInit(): void {
-    this.customerService.getOneCustomer(1).subscribe({
-      next: (data) => {
-        this.customer = data;
-        this.name = this.customer.name;
-      },
-      error: (e) => {console.log("Could not load customer")}
-    });
+    this.subscriptions = [];
+    this.size = 5;
+    this.subscriptions.push(
+      this.productService.page$.subscribe(value => {
+        this.page = value;
+        this.productService.getAllProducts(this.page, this.size)
+          .subscribe({
+            next: (data) => {
+              this.product = data;
+              this.productService.product$.next(this.product);
+              // check if the products is being called or not
+              console.log(data);
+            },
+            error: (e) => {
+              //redirect to error page
+            }
+          });
+      })
+    );
   }
+  
+  
 
 }

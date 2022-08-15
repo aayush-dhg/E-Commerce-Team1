@@ -1,54 +1,109 @@
 <section class="page-header">
-    <div class="overly"></div> 	
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-6">
-          <div class="content text-center">
-            <h1 class="mb-3">Dashboard</h1>
-            <p>Hath after appear tree great fruitful green dominion moveth sixth abundantly image that midst of god day multiply you’ll which</p>
-  
+  <div class="overly"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="content text-center">
+          <h1 class="mb-3">Dashboard</h1>
+          <p>Hath after appear tree great fruitful green dominion moveth sixth abundantly image that midst of god day
+            multiply you’ll which</p>
+
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent justify-content-center">
               <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
             </ol>
           </nav>
-          </div>
         </div>
       </div>
     </div>
-  </section>
-  
-  
-  <section class="user-dashboard page-wrapper">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-5 col-sm-12 col-lg-3">
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link active" routerLink="/dashboard">Dashboard</a>
-          </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/profile-details" >My Profile</a>
-          </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/orders" >Orders</a>
-          </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/inventory" >Inventory</a>
-          </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/cart" >Cart</a>
-          </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/">Log Out</a>
-          </div>
+  </div>
+</section>
+
+
+<section class="user-dashboard page-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-5 col-sm-12 col-lg-3">
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link active" routerLink="/dashboard">Dashboard</a>
         </div>
-  
-  
-        <div class="col-12 col-md-7 col-sm-12 col-lg-9">
-          <p>Hello {{name}}</p>
-          From your account dashboard you can view your <a href="#">recent orders</a>, manage your <a href="/cart">cart</a> and <a href="/profile-details">edit your password and account details</a>.
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link" routerLink="/profile-details">My Profile</a>
+        </div>
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link" routerLink="/orders">Orders</a>
+        </div>
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link" routerLink="/inventory">Inventory</a>
+        </div>
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link" routerLink="/cart">Cart</a>
+        </div>
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link" routerLink="/">Log Out</a>
         </div>
       </div>
+
+
+      <div class="col-12 col-md-7 col-sm-12 col-lg-9">
+        
+        <h1> ADMIN DASHBOARD</h1>
+        <h2> Inventory</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col" [appSort] = "product" data-order = "desc" data-name="id">
+               ID <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+              <th scope="col" [appSort] = "product" data-order = "desc" data-name="id">
+                Name  <br/><i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+              <th scope="col" [appSort] = "product" data-order = "desc" data-name="id">
+                Price <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+              <th scope="col" [appSort] = "product" data-order = "desc" data-name="id">
+                Quantity<i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+              <th scope="col" [appSort] = "product" data-order = "desc" data-name="id">
+                Category <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+              <th scope="col" [appSort] = "product" data-order = "desc" data-name="id">
+                Vendor <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+              <th scope="col" [appSort] = "product" data-order = "desc" data-name="id"> 
+                Sold <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of product">
+              <th scope="row">{{product.id}}</th>
+              <td>
+                {{product.name}}
+              </td>
+              <td>
+                $ {{product.price}}
+              </td>
+              <td>
+                {{product.quantity}}
+              </td>
+              <td>
+                {{product.category}}
+              </td>
+              <td>
+                {{product.vendorName}}
+              </td>
+              <td>
+
+              </td>
+             
+              <td class="row-options">
+                <a routerLink="/order" class="btn btn-custom-options btn-secondary tf-ion-ios-eye"
+                  title="View {{product.productName}} Page"></a>
+                <a  class="btn btn-custom-options btn-success tf-ion-ios-checkmark"
+                  title="Save"></a>
+                <a  class="btn btn-custom-options btn-danger tf-ion-ios-trash"
+                  title="Delete"></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </section>
+  </div>
+</section>

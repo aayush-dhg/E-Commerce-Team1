@@ -37,7 +37,7 @@ export class ShopComponent implements OnInit, OnDestroy {
               this.product = data;
               this.productService.product$.next(this.product);
               // check if the products is being called or not
-              //console.log(data);
+              console.log(data);
             },
             error: (e) => {
               //redirect to error page
