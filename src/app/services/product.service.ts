@@ -45,6 +45,13 @@ export class ProductService {
      product= product.sort((p1, p2) => p2.price - p1.price);
      return product;
  }
+ public sortDefault(product: Product[], flag:number): Product[] {
+  if(flag == 1)
+   product = product.sort((p1, p2) => p1.id - p2.id);
+  else
+   product= product.sort((p1, p2) => p2.id - p1.id);
+   return product;
+}
  
  
 }

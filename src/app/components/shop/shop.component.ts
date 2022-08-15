@@ -50,6 +50,9 @@ export class ShopComponent implements OnInit, OnDestroy {
   sortPrice(flag: number): void {
     this.productService.sortPrice(this.product, flag);
   }
+  sortDefault(flag: number): void {
+    this.productService.sortDefault(this.product, flag);
+  }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());

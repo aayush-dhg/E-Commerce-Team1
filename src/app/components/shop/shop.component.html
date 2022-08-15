@@ -64,8 +64,10 @@
             <!-- Default/reset not working
             <button on(click)= "window.location.reaload()" type="button" class="btn btn-black btn-small">Default Sorting</button><br /><br />
           -->
+            
             <button (click)= "sortPrice(1)" type="button" class="btn btn-black btn-small">Price: Low-High</button><br /><br />
-            <button (click)= "sortPrice(2)" type="button" class="btn btn-black btn-small">Price: High-Low</button>
+            <button (click)= "sortPrice(2)" type="button" class="btn btn-black btn-small">Price: High-Low</button> <br /><br />
+            <button (click)= "sortDefault(1)" type="button" class="btn btn-black btn-small">*Reset-Sorting*</button>
           </section>
         </form>
       </div>
