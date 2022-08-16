@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Vendor } from 'src/app/models/vendor.model';
+import { VendorService } from 'src/app/services/vendor.service';
 
 @Component({
   selector: 'app-admin-dashboard-vendors',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardVendorsComponent implements OnInit {
 
-  constructor() { }
+  vendor: Vendor[];
+  subscriptions: Subscription[];
+  
+  constructor(private vendorService: VendorService) { }
 
   ngOnInit(): void {
+    this.vendorService.vendor$.subscribe(data=>{
+      this.vendorService.getAllVendors().subscribe(data=>{
+        this.vendor = data;
+        console.log(data);
+      })
+    })
   }
 
 }

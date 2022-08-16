@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { ɵ$localize } from '@angular/localize';
 import { ThemePalette } from '@angular/material/core';
-import { Subscription } from 'rxjs';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { Subject, Subscription } from 'rxjs';
 import { Customer } from 'src/app/models/customer.model';
 import { Product } from 'src/app/models/product.model';
 import { CustomerService } from 'src/app/services/customer.service';
 import { ProductService } from 'src/app/services/product.service';
 import { VendorService } from 'src/app/services/vendor.service';
+
 
 @Component({
   selector: 'app-admin-dashboard-inventory',
@@ -16,13 +19,15 @@ export class AdminDashboardInventoryComponent implements OnInit {
   name: string;
   customer: Customer;
   product: Product[];
-  page : number; 
-  size : number; 
-  subscriptions : Subscription[];
+  page: number;
+  size: number;
+  subscriptions: Subscription[];
+  ProductData: Product[];
 
-  alertMessage : string;
 
-  constructor(private customerService: CustomerService, 
+  alertMessage: string;
+
+  constructor(private customerService: CustomerService,
     private productService: ProductService,
     private vendorService: VendorService) { }
 
@@ -47,6 +52,28 @@ export class AdminDashboardInventoryComponent implements OnInit {
       })
     );
   }
-  
+  prev() {
+    //read the value of page from subject
+
+    let page = this.productService.page$.getValue();
+    //update the value of page
+    if (page > 0) {
+      this.page = page - 1;
+      //attach the updated value to the subject
+      this.productService.page$.next(this.page);
+    }
+  }
+
+  next() {
+    //read the value of page from subject
+    let page = this.productService.page$.getValue();
+
+    //update the value of page
+    this.page = page + 1;
+    //attach the updated value to the subject
+    this.productService.page$.next(this.page);
+  }
+
+
 
 }

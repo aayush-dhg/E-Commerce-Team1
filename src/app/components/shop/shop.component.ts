@@ -27,7 +27,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions = [];
-    this.size = 5;
+    this.size = 6;
     this.subscriptions.push(
       this.productService.page$.subscribe(value => {
         this.page = value;

@@ -27,6 +27,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
           next : (data) => {
             this.products = data;
             this.productService.product$.next(this.products);
+            console.log(data);
           },
           error: (e) =>{
               //redirect to error page        
@@ -36,6 +37,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     );
   }
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+   this.subscription.forEach(sub=>sub.unsubscribe());
   }
 }

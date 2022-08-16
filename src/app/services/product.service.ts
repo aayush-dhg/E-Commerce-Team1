@@ -16,6 +16,7 @@ export class ProductService {
 
   product$ = new BehaviorSubject<Product[]>([]);
   page$ = new BehaviorSubject<number>(0);
+  size$ = new BehaviorSubject<number>(5);
   stat$ = new BehaviorSubject<Boolean>(false);
  
 

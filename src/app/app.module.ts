@@ -33,7 +33,8 @@ import { AdminDashboardCustomersComponent } from './components/dashboard/admin-d
 import { AdminDashboardVendorsComponent } from './components/dashboard/admin-dashboard-vendors/admin-dashboard-vendors.component';
 import { AdminDashboardSalesComponent } from './components/dashboard/admin-dashboard-sales/admin-dashboard-sales.component';
 import { MatTabsModule } from '@angular/material/tabs'; 
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+
 
 import { LogoutComponent } from './components/logout/logout.component';
 
@@ -64,7 +65,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     AdminDashboardVendorsComponent,
     AdminDashboardSalesComponent,
 
-    LogoutComponent
+    LogoutComponent,
+    
 
 
   ],
@@ -76,6 +78,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTabsModule,
+    
     MatPaginatorModule,
   ],
   providers: [],
