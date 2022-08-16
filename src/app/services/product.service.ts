@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, ɵɵstylePropInterpolate1 } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Product, Stat } from '../models/product.model';
+import { Product, SingleProduct, Stat } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +12,11 @@ export class ProductService {
   postApi: string;
   getAllApi: string;
   getStatsApi: string;
+  getSingleProductApi: string;
 
 
   product$ = new BehaviorSubject<Product[]>([]);
+  singleProduct$ = new BehaviorSubject<SingleProduct[]>([]);
   page$ = new BehaviorSubject<number>(0);
   size$ = new BehaviorSubject<number>(5);
   stat$ = new BehaviorSubject<Boolean>(false);
@@ -25,6 +27,8 @@ export class ProductService {
     this.postApi = "http://localhost:8282/products";
     this.getAllApi = "http://localhost:8282/products";
     this.getStatsApi = "http://localhost:8282/products";
+    this.getSingleProductApi = "http://localhost:8282/product/";
+
     }
 
   public postProduct(product: Product):Observable<Product>{
@@ -34,6 +38,9 @@ export class ProductService {
   getAllProducts(page : number, size: number): Observable<Product[]>{
     return this.http.get<Product[]>
     (this.getAllApi + '?page='+ page + '&size=' + size);
+  }
+  getSingleProduct(id:number): Observable<Product[]>{
+    return this.http.get<Product[]>(this.getSingleProductApi + id);
   }
   getProductStats():Observable<Stat[]>{
     return this.http.get<Stat[]>(this.getStatsApi);

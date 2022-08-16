@@ -18,3 +18,12 @@ export class Stat{
     vendorName : string; 
     
 }
+
+export class SingleProduct{
+    id? : number;
+    productname?: string;
+    price?: number;
+    quantity?: number;
+    categoryName?: string;
+    
+}
