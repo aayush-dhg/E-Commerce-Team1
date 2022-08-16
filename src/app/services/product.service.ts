@@ -22,9 +22,9 @@ export class ProductService {
 
 
   constructor(private http:HttpClient ) { 
-    this.postApi = "http://localhost:8383/products";
-    this.getAllApi = "http://localhost:8383/products";
-    this.getStatsApi = "http://localhost:8383/products";
+    this.postApi = "http://localhost:8282/products";
+    this.getAllApi = "http://localhost:8282/products";
+    this.getStatsApi = "http://localhost:8282/products";
     }
 
   public postProduct(product: Product):Observable<Product>{

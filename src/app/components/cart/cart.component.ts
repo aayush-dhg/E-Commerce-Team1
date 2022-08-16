@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.message = '';
-    this.customerCartService.getCart(13).subscribe({
+    this.customerCartService.getCart().subscribe({
       next: (data) => {
         this.customerCart = data;
         
@@ -44,7 +44,7 @@ export class CartComponent implements OnInit {
   }
 
   onDeleteProduct(pid: number) {
-    this.customerCartService.deleteProduct(13, pid).subscribe({
+    this.customerCartService.deleteProduct(pid).subscribe({
       next: (data) => {
         for(var value of this.products){
           if (value.id == pid){

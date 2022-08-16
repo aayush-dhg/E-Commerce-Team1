@@ -20,8 +20,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.username='';
-    this.loginApi = 'http://localhost:8383/login';
-    this.signUpApi='http://localhost:8383/user';
+    this.loginApi = 'http://localhost:8282/login';
+    this.signUpApi='http://localhost:8282/user';
   }
 
   isLoggedIn(): boolean{

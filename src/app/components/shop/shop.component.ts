@@ -61,7 +61,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   addToCart(pid:number): void {
-    this.cartService.addToCart(13, pid).subscribe({ 
+    this.cartService.addToCart(pid).subscribe({ 
       next: (data)=>{
         let cartItems = this.cartService.customerCart$.getValue().filter(c => c.id != data.id);
         cartItems.push(data);

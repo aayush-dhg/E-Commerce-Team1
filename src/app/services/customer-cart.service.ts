@@ -23,22 +23,24 @@ export class CustomerCartService {
   getCartApi: string;
   deleteProductApi: string;
   addToCartApi: string;
+  id:number;
 
   constructor(private http: HttpClient) {
+    this.id = +localStorage.getItem("id");
     this.getCartApi = environment.serverUrl+'/customer/cart';
     this.deleteProductApi = environment.serverUrl+'/customer/cart/delete'
     this.addToCartApi = environment.serverUrl+'/customer/cart'
   }
 
-  getCart(cid:number): Observable<CustomerCart[]> {
-    return this.http.get<CustomerCart[]>(`${this.getCartApi}/13`);
+  getCart(): Observable<CustomerCart[]> {
+    return this.http.get<CustomerCart[]>(`${this.getCartApi}/${this.id}`);
   }
 
-  deleteProduct(cid:number, pid: number): Observable<any>{
-    return this.http.delete<any>(`${this.deleteProductApi}/13/${pid}`);
+  deleteProduct(pid: number): Observable<any>{
+    return this.http.delete<any>(`${this.deleteProductApi}/${this.id}/${pid}`);
   }
 
-  addToCart(cid:number, pid:number):Observable<CustomerCart>{
-    return this.http.post<CustomerCart>(`${this.addToCartApi}/13/${pid}`, {});
+  addToCart(pid:number):Observable<CustomerCart>{
+    return this.http.post<CustomerCart>(`${this.addToCartApi}/${this.id}/${pid}`, {});
   }
 }

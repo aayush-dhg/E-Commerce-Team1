@@ -40,7 +40,7 @@ export class InventoryComponent implements OnInit {
       productName: <string>$('#addProduct_name').val(),
       price: <number>$('#addProduct_price').val(),
       quantity: <number>$('#addProduct_qty').val(),
-      vendorId: +sessionStorage.getItem("vendorId")!,
+      vendorId: +localStorage.getItem("id")!,
       category: {
         id: $('#categories option').filter(function() {
             return (<HTMLOptionElement>this).value == $('#addProduct_category').val();

@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
       console.log(this.username);
     })
     this.role = localStorage.getItem("role");
-    this.cartService.getCart(13).subscribe({
+    /* this.cartService.getCart(13).subscribe({
       next: (data)=>{
         this.cartService.customerCart$.next(data);
         this.cart = this.cartService.customerCart$.getValue();
@@ -33,12 +33,12 @@ export class HeaderComponent implements OnInit {
       error: (data)=>{
         console.log(data);
       }
-    })
+    }) */
     this.cart = this.cartService.customerCart$.getValue();
   }
 
   removeItem(pid:number):void{
-    this.cartService.deleteProduct(13, pid).subscribe({
+    this.cartService.deleteProduct(pid).subscribe({
       next: (data)=>{
         this.cart = this.cart.filter(c => c != data);
         this.cartService.customerCart$.next(this.cart);
