@@ -39,6 +39,7 @@ export class DashboardComponent implements OnInit {
     this.role = localStorage.getItem("role");
     this.subscriptions = [];
     this.size = 5;
+    localStorage.getItem("role");
     this.subscriptions.push(
       this.productService.page$.subscribe(value => {
         this.page = value;
