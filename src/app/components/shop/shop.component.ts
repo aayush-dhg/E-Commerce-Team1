@@ -4,6 +4,7 @@ import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 import { CustomerCartService } from 'src/app/services/customer-cart.service';
 import { CustomerCart } from 'src/app/models/customerCart.model';
+import { Customer } from 'src/app/models/customer.model';
 
 
 @Component({
@@ -63,7 +64,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   addToCart(pid:number): void {
     this.cartService.addToCart(pid).subscribe({ 
       next: (data)=>{
-        let cartItems = this.cartService.customerCart$.getValue().filter(c => c.id != data.id);
+        let cartItems:CustomerCart[] = this.cartService.customerCart$.getValue().filter(c => c.id != data.id);
         cartItems.push(data);
         console.log(cartItems)
         this.cartService.customerCart$.next(cartItems);
