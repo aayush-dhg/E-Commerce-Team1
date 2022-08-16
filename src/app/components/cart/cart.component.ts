@@ -61,4 +61,8 @@ export class CartComponent implements OnInit {
     });
   }
 
+  onClick(){
+    
+  }
+
 }

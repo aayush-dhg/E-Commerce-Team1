@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
         this.authService.username$.next(this.user.username);
         this.authService.credentials$.next(btoa(this.username + ':' + this.password));
         this.authService.id$.next(String(this.user.id));
-        this.authService.role$.next(this.user.role);
         this.router.navigateByUrl('/');
       },
       error: (e)=> {
