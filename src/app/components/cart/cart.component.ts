@@ -11,7 +11,7 @@ import { CustomerCartService } from 'src/app/services/customer-cart.service';
 })
 export class CartComponent implements OnInit {
 
-  customerCart: CustomerCart;
+  customerCart: CustomerCart[] = [];
   products: Product[];
   price: number;
   message: string;
@@ -20,21 +20,21 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.message = '';
-    this.customerCartService.getCart().subscribe({
+    this.customerCartService.getCart(13).subscribe({
       next: (data) => {
         this.customerCart = data;
         
-        this.customerCartService.products$.next(this.customerCart.products);
+        //this.customerCartService.products$.next(this.customerCart.products);
         this.customerCartService.products$.subscribe({
           next: (data) => {
             this.products = data;
           }
         })
 
-        this.customerCartService.totalPrice$.next(this.customerCart.totalPrice);
+       // this.customerCartService.totalPrice$.next(this.customerCart.totalPrice);
         this.customerCartService.totalPrice$.subscribe({
           next: (data) => {
-            this.customerCart.totalPrice = data;
+            //this.customerCart.totalPrice = data;
           }
         })
         
@@ -44,7 +44,7 @@ export class CartComponent implements OnInit {
   }
 
   onDeleteProduct(pid: number) {
-    this.customerCartService.deleteProduct(pid).subscribe({
+    this.customerCartService.deleteProduct(13, pid).subscribe({
       next: (data) => {
         for(var value of this.products){
           if (value.id == pid){
@@ -53,7 +53,7 @@ export class CartComponent implements OnInit {
             this.products.splice(index, 1);
           }
         }
-        this.customerCartService.totalPrice$.next(this.customerCart.totalPrice - this.price);
+        //this.customerCartService.totalPrice$.next(this.customerCart.totalPrice - this.price);
         this.customerCartService.products$.next(this.products);
         this.message = 'Product deleted.';
       },

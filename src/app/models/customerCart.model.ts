@@ -6,7 +6,9 @@ export class CustomerCart{
 	
 	customer: Customer;
 	
-	products: Product[];
+	product: Product;
 	
+	quantity: number;
+
 	totalPrice: number;
 }

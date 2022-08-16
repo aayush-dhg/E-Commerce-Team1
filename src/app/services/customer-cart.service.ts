@@ -17,34 +17,28 @@ const httpOptions = {
 })
 export class CustomerCartService {
 
+  customerCart$ = new BehaviorSubject<CustomerCart[]>([]);
   products$ = new BehaviorSubject<Product[]>([]);
   totalPrice$ = new BehaviorSubject<number>(0);
   getCartApi: string;
-  createCartApi: string;
   deleteProductApi: string;
   addToCartApi: string;
 
   constructor(private http: HttpClient) {
-    this.getCartApi = environment.serverUrl+'/customer/cart/16';
-    this.createCartApi = environment.serverUrl+'/customer/cart/16';
-    this.deleteProductApi = environment.serverUrl+'/customer/cart/delete/16/'
-    this.addToCartApi = environment.serverUrl+'/customer/cart/16/5'
+    this.getCartApi = environment.serverUrl+'/customer/cart';
+    this.deleteProductApi = environment.serverUrl+'/customer/cart/delete'
+    this.addToCartApi = environment.serverUrl+'/customer/cart'
   }
 
-  createCart(): Observable<any>{
-    let customerCart ={}
-    return this.http.post<any>(this.createCartApi, customerCart, httpOptions);
+  getCart(cid:number): Observable<CustomerCart[]> {
+    return this.http.get<CustomerCart[]>(`${this.getCartApi}/13`);
   }
 
-  getCart(): Observable<CustomerCart> {
-    return this.http.get<CustomerCart>(this.getCartApi);
+  deleteProduct(cid:number, pid: number): Observable<any>{
+    return this.http.delete<any>(`${this.deleteProductApi}/13/${pid}`);
   }
 
-  deleteProduct(id: number): Observable<any>{
-    return this.http.put<any>(this.deleteProductApi + id,'');
-  }
-
-  addToCart():Observable<Product>{
-    return this.http.put<Product>(this.addToCartApi, "");
+  addToCart(cid:number, pid:number):Observable<CustomerCart>{
+    return this.http.post<CustomerCart>(`${this.addToCartApi}/13/${pid}`, {});
   }
 }

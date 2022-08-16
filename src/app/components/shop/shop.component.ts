@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 import { CustomerCartService } from 'src/app/services/customer-cart.service';
+import { CustomerCart } from 'src/app/models/customerCart.model';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   page: number;
   size: number;
   subscriptions: Subscription[];
+  customerCart:CustomerCart[];
 
 
   constructor(private productService: ProductService,
@@ -58,13 +60,18 @@ export class ShopComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
-
-  createCart(): void {
-    this.cartService.createCart().subscribe(() => { });
-  }
-
-  addToCart(): void {
-    this.cartService.addToCart().subscribe(() => { });
+  addToCart(pid:number): void {
+    this.cartService.addToCart(13, pid).subscribe({ 
+      next: (data)=>{
+        let cartItems = this.cartService.customerCart$.getValue().filter(c => c.id != data.id);
+        cartItems.push(data);
+        console.log(cartItems)
+        this.cartService.customerCart$.next(cartItems);
+      },
+      error: (data)=>{
+        console.log(data);
+      }
+    });
   }
   prev() {
     //read the value of page from subject

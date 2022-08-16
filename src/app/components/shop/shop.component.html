@@ -20,8 +20,7 @@
                     alt="product-img" /></a>
               </div>
               <div class="product-hover-overlay">
-                <a href="#"><i class="tf-ion-android-cart"></i></a>
-                <a href="#"><i class="tf-ion-ios-heart"></i></a>
+                <a href="javascript:void" (click)="addToCart(product.id)"><i class="tf-ion-android-cart"></i></a>
               </div>
               <div class="product-info">
                 <h2 class="product-title h5 mb-0"><a routerLink="/product-single">{{product.name}}</a></h2>
