@@ -16,14 +16,15 @@ export class ProductService {
 
   product$ = new BehaviorSubject<Product[]>([]);
   page$ = new BehaviorSubject<number>(0);
+  size$ = new BehaviorSubject<number>(5);
   stat$ = new BehaviorSubject<Boolean>(false);
  
 
 
   constructor(private http:HttpClient ) { 
-    this.postApi = "http://localhost:8282/products";
-    this.getAllApi = "http://localhost:8282/products";
-    this.getStatsApi = "http://localhost:8282/products";
+    this.postApi = "http://localhost:8383/products";
+    this.getAllApi = "http://localhost:8383/products";
+    this.getStatsApi = "http://localhost:8383/products";
     }
 
   public postProduct(product: Product):Observable<Product>{

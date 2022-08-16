@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { Orders } from '../models/orders.model';
 import { Vendor } from '../models/vendor.model';
 import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 const httpOptions = {
   headers: 
@@ -20,10 +21,19 @@ const httpOptions = {
 })
 export class VendorService {
 
-  constructor(private http: HttpClient) { }
+  getAllVendorsApi : string;
+  vendor$ = new BehaviorSubject<Vendor[]>([]);
+
+  constructor(private http: HttpClient) { 
+    this.getAllVendorsApi = environment.serverUrl + '/vendor/all';
+  }
 
   updateVendor(vendor:Vendor):Observable<void>{
     return this.http.put<void>(`${environment.serverUrl}/vendor/${vendor.id}`, vendor, httpOptions);
+  }
+
+  getAllVendors(): Observable<Vendor[]>{
+    return this.http.get<Vendor[]>(this.getAllVendorsApi);
   }
 
   getVendorById(vendorId:number):Observable<Vendor>{

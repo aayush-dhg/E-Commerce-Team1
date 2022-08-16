@@ -27,7 +27,7 @@
             <li><a routerLink="/shop">Shop</a></li>
             <li><a routerLink="/shop">Product Details</a></li>
             <li><a routerLink="/checkout">Checkout</a></li>
-            <li><a routerLink="/cart">Cart</a></li>
+            <li *ngIf="role=='customer' "><a routerLink="/cart">Cart</a></li>
             <!--<li><a routerLink="/confirmation">Confirmation</a></li>-->
           </ul>
         </li><!-- / Blog -->
@@ -44,11 +44,11 @@
         <a href="#" class="search_toggle" id="search-icon"><i class="tf-ion-android-search"></i></a>
       </li>
 
-      <li class="dropdown cart-nav dropdown-slide list-inline-item">
+      <li class="dropdown cart-nav dropdown-slide list-inline-item" *ngIf="role=='customer'">
         <a href="#" class="dropdown-toggle cart-icon" data-toggle="dropdown" data-hover="dropdown">
           <i class="tf-ion-android-cart"></i>
         </a>
-        <div class="dropdown-menu cart-dropdown">
+        <div class="dropdown-menu cart-dropdown" >
           <!-- Cart Item -->
           <div *ngFor="let item of cart" class="media">
             <a routerLink="/product-single">
@@ -85,7 +85,14 @@
           <li><a routerLink="/dashboard">Dashboard</a></li>
           <li><a routerLink="/orders">Orders</a></li>
           <li><a routerLink="/profile-details">Account Details</a></li>
-          <li><a routerLink="/login">Login</a></li>
+          <li>
+            <span *ngIf="username != '' ">
+                <a routerLink="/logout">Logout</a>
+            </span>
+            <span *ngIf="username == '' " >
+              <a routerLink="/login">Login</a>
+            </span>
+          </li>
           <li><a routerLink="/signup">SignUp Page</a></li>
           <li><a routerLink="/forgot-password">Forgot Password</a></li>
         </ul>

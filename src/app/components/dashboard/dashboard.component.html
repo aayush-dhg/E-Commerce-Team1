@@ -1,54 +1,39 @@
-<section class="page-header">
-    <div class="overly"></div> 	
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-6">
-          <div class="content text-center">
-            <h1 class="mb-3">Dashboard</h1>
-            <p>Hath after appear tree great fruitful green dominion moveth sixth abundantly image that midst of god day multiply you’ll which</p>
-  
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb bg-transparent justify-content-center">
-              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-            </ol>
-          </nav>
-          </div>
+
+<section class="user-dashboard page-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-5 col-sm-12 col-lg-3">
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link active" routerLink="/dashboard">Dashboard</a>
+        </div>
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link" routerLink="/profile-details">My Profile</a>
+        </div>
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link" routerLink="/orders">Orders</a>
+        </div>
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link" routerLink="/inventory">Inventory</a>
+        </div>
+        <div class="nav flex-column nav-pills" *ngIf="role=='customer' ">
+          <a class="nav-link" routerLink="/cart">Cart</a>
+        </div>
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link" routerLink="/">Log Out</a>
         </div>
       </div>
-    </div>
-  </section>
-  
-  
-  <section class="user-dashboard page-wrapper">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-5 col-sm-12 col-lg-3">
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link active" routerLink="/dashboard">Dashboard</a>
-          </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/profile-details" >My Profile</a>
-          </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/orders" >Orders</a>
-          </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/inventory" >Inventory</a>
-          </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/cart" >Cart</a>
-          </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/">Log Out</a>
-          </div>
-        </div>
-  
-  
-        <div class="col-12 col-md-7 col-sm-12 col-lg-9">
-          <p>Hello {{name}}</p>
-          From your account dashboard you can view your <a href="#">recent orders</a>, manage your <a href="/cart">cart</a> and <a href="/profile-details">edit your password and account details</a>.
-        </div>
+
+
+      <div class="col-12 col-md-7 col-sm-12 col-lg-9">
+        <h1> ADMIN DASHBOARD</h1>    
+       
+        <mat-tab-group>
+          <mat-tab label = "Inventory"> <app-admin-dashboard-inventory> </app-admin-dashboard-inventory> </mat-tab>
+          <mat-tab label = "Customers"> <app-admin-dashboard-customers> </app-admin-dashboard-customers> </mat-tab>
+          <mat-tab label = "Vendors"> <app-admin-dashboard-vendors> </app-admin-dashboard-vendors></mat-tab>
+          <mat-tab label = "Sales"> <app-admin-dashboard-sales> </app-admin-dashboard-sales> </mat-tab>
+        </mat-tab-group>
       </div>
     </div>
-  </section>
+  </div>
+</section>

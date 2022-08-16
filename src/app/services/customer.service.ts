@@ -14,9 +14,14 @@ export class CustomerService {
   getOneCustomerApi: string;
   updateOneCustomerApi: string;
 
+
+  customer$ = new BehaviorSubject<Customer[]>([]);
+  page$ = new BehaviorSubject<number>(0);
+
   constructor(private http: HttpClient) {
     this.postApi = environment.serverUrl + '/customer';
     this.getAllCustomersApi = environment.serverUrl + '/customers';
+
     this.getOneCustomerApi = environment.serverUrl + '/customer/';
     this.updateOneCustomerApi = environment.serverUrl + '/customer/';
   }
@@ -28,6 +33,7 @@ export class CustomerService {
   getAllCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>(this.getAllCustomersApi);
   }
+  
 
   getOneCustomer(cid: number): Observable<Customer> {
     return this.http.get<Customer>(this.getOneCustomerApi + cid);

@@ -12,6 +12,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { ProductsComponent } from './components/products/products.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
+import { LogoutComponent } from './components/logout/logout.component';
 const routes: Routes = [
   { path:"", component:HomeComponent },
   { path:"product-single", component:ProductsingleComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path:"dashboard", component:DashboardComponent },
   { path:"order", component:OrdersComponent },
   { path:"login", component:LoginComponent },
+  { path:"logout",component:LogoutComponent},
   { path:"signup", component:SignupComponent },
   { path:"forgot-password", component:ForgotPasswordComponent },
   { path: "product", component: ProductsComponent},

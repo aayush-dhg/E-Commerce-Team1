@@ -22,10 +22,22 @@ import { SignupComponent } from './components/signup/signup.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 import { ProductsComponent } from './components/products/products.component';
 import { SortDirective } from './directive/sort.directive';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminDashboardInventoryComponent } from './components/dashboard/admin-dashboard-inventory/admin-dashboard-inventory.component';
+import { AdminDashboardCustomersComponent } from './components/dashboard/admin-dashboard-customers/admin-dashboard-customers.component';
+import { AdminDashboardVendorsComponent } from './components/dashboard/admin-dashboard-vendors/admin-dashboard-vendors.component';
+import { AdminDashboardSalesComponent } from './components/dashboard/admin-dashboard-sales/admin-dashboard-sales.component';
+import { MatTabsModule } from '@angular/material/tabs'; 
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+
+
+import { LogoutComponent } from './components/logout/logout.component';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +58,16 @@ import { SortDirective } from './directive/sort.directive';
     InventoryComponent,
     ProfileDetailsComponent,
     ProductsComponent,
-    SortDirective
+    SortDirective,
+
+    AdminDashboardInventoryComponent,
+    AdminDashboardCustomersComponent,
+    AdminDashboardVendorsComponent,
+    AdminDashboardSalesComponent,
+
+    LogoutComponent,
+    
+
 
   ],
   imports: [
@@ -55,6 +76,10 @@ import { SortDirective } from './directive/sort.directive';
     SlickCarouselModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+    FormsModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

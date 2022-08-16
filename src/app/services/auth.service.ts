@@ -10,6 +10,9 @@ export class AuthService {
 
   username: string;
   username$ = new BehaviorSubject<string>('');
+  credentials$ = new BehaviorSubject<string>('');
+  id$ = new BehaviorSubject<string>('');
+  role$ = new BehaviorSubject<string>('');
 
   message$ = new BehaviorSubject<string>('');
   loginApi: string;
@@ -17,8 +20,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.username='';
-    this.loginApi = 'http://localhost:8282/login';
-    this.signUpApi='http://localhost:8282/user';
+    this.loginApi = 'http://localhost:8383/login';
+    this.signUpApi='http://localhost:8383/user';
   }
 
   isLoggedIn(): boolean{

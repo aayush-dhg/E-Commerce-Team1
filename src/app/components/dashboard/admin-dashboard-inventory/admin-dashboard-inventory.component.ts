@@ -1,35 +1,39 @@
-import { Component, ElementRef, HostListener, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { ɵ$localize } from '@angular/localize';
+import { ThemePalette } from '@angular/material/core';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { Subject, Subscription } from 'rxjs';
+import { Customer } from 'src/app/models/customer.model';
 import { Product } from 'src/app/models/product.model';
+import { CustomerService } from 'src/app/services/customer.service';
 import { ProductService } from 'src/app/services/product.service';
-import { CustomerCartService } from 'src/app/services/customer-cart.service';
-import { CustomerCart } from 'src/app/models/customerCart.model';
+import { VendorService } from 'src/app/services/vendor.service';
 
 
 @Component({
-  selector: 'app-shop',
-  templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.css']
+  selector: 'app-admin-dashboard-inventory',
+  templateUrl: './admin-dashboard-inventory.component.html',
+  styleUrls: ['./admin-dashboard-inventory.component.css']
 })
-export class ShopComponent implements OnInit, OnDestroy {
-
-
+export class AdminDashboardInventoryComponent implements OnInit {
+  name: string;
+  customer: Customer;
   product: Product[];
   page: number;
   size: number;
   subscriptions: Subscription[];
-  customerCart:CustomerCart[];
+  ProductData: Product[];
 
 
-  constructor(private productService: ProductService,
-    private cartService: CustomerCartService,
-  ) {
+  alertMessage: string;
 
-  }
+  constructor(private customerService: CustomerService,
+    private productService: ProductService,
+    private vendorService: VendorService) { }
 
   ngOnInit(): void {
     this.subscriptions = [];
-    this.size = 6;
+    this.size = 5;
     this.subscriptions.push(
       this.productService.page$.subscribe(value => {
         this.page = value;
@@ -39,7 +43,7 @@ export class ShopComponent implements OnInit, OnDestroy {
               this.product = data;
               this.productService.product$.next(this.product);
               // check if the products is being called or not
-              console.log(data);
+              //console.log(data);
             },
             error: (e) => {
               //redirect to error page
@@ -47,31 +51,6 @@ export class ShopComponent implements OnInit, OnDestroy {
           });
       })
     );
-  }
-
-  sortPrice(flag: number): void {
-    this.productService.sortPrice(this.product, flag);
-  }
-  sortDefault(flag: number): void {
-    this.productService.sortDefault(this.product, flag);
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
-  }
-
-  addToCart(pid:number): void {
-    this.cartService.addToCart(13, pid).subscribe({ 
-      next: (data)=>{
-        let cartItems = this.cartService.customerCart$.getValue().filter(c => c.id != data.id);
-        cartItems.push(data);
-        console.log(cartItems)
-        this.cartService.customerCart$.next(cartItems);
-      },
-      error: (data)=>{
-        console.log(data);
-      }
-    });
   }
   prev() {
     //read the value of page from subject
@@ -88,9 +67,13 @@ export class ShopComponent implements OnInit, OnDestroy {
   next() {
     //read the value of page from subject
     let page = this.productService.page$.getValue();
+
     //update the value of page
     this.page = page + 1;
     //attach the updated value to the subject
     this.productService.page$.next(this.page);
   }
+
+
+
 }
