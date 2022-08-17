@@ -38,9 +38,6 @@
                                 Quantity<i style="font-size:24px" class="fa">&#xf0dc;</i></th>
                             <th scope="col" [appSort]="product" data-order="desc" data-name="category">
                                 Category <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
-                            
-                            <th scope="col" [appSort]="product" data-order="desc" data-name="sold">
-                                Sold <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
                             <th scope="col">Action</th>
 
                         </tr>
@@ -59,16 +56,13 @@
                             </td>
                             <td>
                                 {{product.category.name}}
-                            </td>
-                            <td>
-                                {{product.vendorName}}
-                            </td>
+                            </td>                     
                             
 
                             <td class="row-options">
                                 <a routerLink="/order" title="View {{product.productName}} Page">Orders</a> <br />
                                 <a routerLink="/product-single" (click)="getSingle(product.id)">View</a><br />
-                                
+                                <a href="#" (click)="deleteProduct(+product.id!)">Delete</a><br />
                             </td>
                         </tr>
                     </tbody>

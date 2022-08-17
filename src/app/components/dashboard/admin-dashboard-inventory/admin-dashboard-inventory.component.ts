@@ -25,6 +25,7 @@ export class AdminDashboardInventoryComponent implements OnInit {
   size: number;
   vendor: Vendor[];
   singleProduct: Product[];
+  inventory: Product[] =[];
   
   subscriptions: Subscription[];
   ProductData: Product[];
@@ -67,6 +68,15 @@ export class AdminDashboardInventoryComponent implements OnInit {
         console.log(this.productService.product$.value);
       })
 
+  }
+  deleteProduct(productId:number): void{
+    this.vendorService.deleteProduct(productId).subscribe(() => {
+      this.inventory = this.inventory.filter(p => p.id != productId );
+      this.alertMessage = "Product has been deleted.";
+      $('#successMessage').fadeToggle(0,"linear", ()=>{
+        $('#successMessage').fadeToggle(5000)
+      });
+    })
   }
   prev() {
     //read the value of page from subject

@@ -3,8 +3,8 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-5 col-sm-12 col-lg-3">
-        <div class="nav flex-column nav-pills">
-          <a class="nav-link active" routerLink="/dashboard">Dashboard</a>
+        <div class="nav flex-column nav-pills" *ngIf="role=='admin' ">
+          <a class="nav-link active" routerLink="/dashboard" >Dashboard</a>
         </div>
         <div class="nav flex-column nav-pills">
           <a class="nav-link" routerLink="/profile-details">My Profile</a>
@@ -24,7 +24,7 @@
       </div>
 
       <div >
-      <div class="col-12 col-md-7 col-sm-12 col-lg-9" >
+      <div class="col-12 col-md-7 col-sm-12 col-lg-9">
         <h1> ADMIN DASHBOARD</h1>    
        
         <mat-tab-group>
