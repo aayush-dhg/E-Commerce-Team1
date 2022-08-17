@@ -23,6 +23,7 @@ export class CustomerCartService {
   getCartApi: string;
   deleteProductApi: string;
   addToCartApi: string;
+  createCartApi: string;
   id:number;
 
   constructor(private http: HttpClient) {
@@ -30,7 +31,12 @@ export class CustomerCartService {
     this.getCartApi = environment.serverUrl+'/customer/cart';
     this.deleteProductApi = environment.serverUrl+'/customer/cart/delete'
     this.addToCartApi = environment.serverUrl+'/customer/cart'
+    this.createCartApi = environment.serverUrl+'/customer/cart'
   }
+
+  /*createCart(): Observable<any>{
+    return this.http.
+  }*/
 
   getCart(): Observable<CustomerCart[]> {
     return this.http.get<CustomerCart[]>(`${this.getCartApi}/${this.id}`);

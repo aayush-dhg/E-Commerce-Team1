@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Customer } from 'src/app/models/customer.model';
 import { CustomerCart } from 'src/app/models/customerCart.model';
 import { Product } from 'src/app/models/product.model';
 import { CustomerCartService } from 'src/app/services/customer-cart.service';
@@ -12,56 +13,43 @@ import { CustomerCartService } from 'src/app/services/customer-cart.service';
 export class CartComponent implements OnInit {
 
   customerCart: CustomerCart[] = [];
+  customer: Customer;
   products: Product[];
   price: number;
   message: string;
+  role: string;
+  totalPrice: number;
 
   constructor(private customerCartService: CustomerCartService) { }
 
   ngOnInit(): void {
     this.message = '';
+    this.totalPrice = 0;
+    this.role = localStorage.getItem("role");
+
     this.customerCartService.getCart().subscribe({
       next: (data) => {
-        this.customerCart = data;
-        
-        //this.customerCartService.products$.next(this.customerCart.products);
-        this.customerCartService.products$.subscribe({
-          next: (data) => {
-            this.products = data;
+        for (var value of data){
+          if (value.customer.id == +localStorage.getItem("id")){
+            this.customerCart.push(value);
+            this.totalPrice += value.totalPrice;
           }
-        })
-
-       // this.customerCartService.totalPrice$.next(this.customerCart.totalPrice);
-        this.customerCartService.totalPrice$.subscribe({
-          next: (data) => {
-            //this.customerCart.totalPrice = data;
-          }
-        })
-        
+        }       
       },
-      error: (e) => { console.log("could not get customerCart :(") }
+      error: (e) => { console.log('couldnt load cart') }
     });
   }
 
   onDeleteProduct(pid: number) {
     this.customerCartService.deleteProduct(pid).subscribe({
       next: (data) => {
-        for(var value of this.products){
-          if (value.id == pid){
-            this.price = value.price;
-            let index = this.products.indexOf(value);
-            this.products.splice(index, 1);
-          }
-        }
-        //this.customerCartService.totalPrice$.next(this.customerCart.totalPrice - this.price);
-        this.customerCartService.products$.next(this.products);
         this.message = 'Product deleted.';
       },
-      error: (e) => {console.log("could not delete product :(")}
+      error: (e) => {console.log("could not delete product")}
     });
   }
 
-  onClick(){
+  onCheckout(){
     
   }
 

@@ -26,7 +26,6 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
             <li><a routerLink="/shop">Shop</a></li>
             <li><a routerLink="/shop">Product Details</a></li>
-            <li><a routerLink="/checkout">Checkout</a></li>
             <li *ngIf="role=='customer' "><a routerLink="/cart">Cart</a></li>
             <!--<li><a routerLink="/confirmation">Confirmation</a></li>-->
           </ul>
@@ -82,9 +81,9 @@
         </a>
 
         <ul class="dropdown-menu account-dropdown" aria-labelledby="">
-          <li><a routerLink="/dashboard">Dashboard</a></li>
-          <li><a routerLink="/orders">Orders</a></li>
-          <li><a routerLink="/profile-details">Account Details</a></li>
+          <li><a routerLink="/dashboard" *ngIf="role != '' ">Dashboard</a></li>
+          <li><a routerLink="/orders" *ngIf="role == 'vendor' ">Orders</a></li>
+          <li><a routerLink="/profile-details" *ngIf="username != '' ">Account Details</a></li>
           <li>
             <span *ngIf="username != '' ">
                 <a routerLink="/logout">Logout</a>
