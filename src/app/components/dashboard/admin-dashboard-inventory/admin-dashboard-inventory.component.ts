@@ -2,6 +2,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { ɵ$localize } from '@angular/localize';
 import { ThemePalette } from '@angular/material/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
+import { event } from 'jquery';
 import { Subject, Subscription } from 'rxjs';
 import { Customer } from 'src/app/models/customer.model';
 import { Product } from 'src/app/models/product.model';
@@ -21,6 +22,7 @@ export class AdminDashboardInventoryComponent implements OnInit {
   product: Product[];
   page: number;
   size: number;
+  
   subscriptions: Subscription[];
   ProductData: Product[];
 
@@ -54,7 +56,6 @@ export class AdminDashboardInventoryComponent implements OnInit {
   }
   prev() {
     //read the value of page from subject
-
     let page = this.productService.page$.getValue();
     //update the value of page
     if (page > 0) {
@@ -67,11 +68,22 @@ export class AdminDashboardInventoryComponent implements OnInit {
   next() {
     //read the value of page from subject
     let page = this.productService.page$.getValue();
-
+    let size = this.productService.size$.getValue();
     //update the value of page
-    this.page = page + 1;
-    //attach the updated value to the subject
-    this.productService.page$.next(this.page);
+    if(size <= 5){
+      this.page = page + 1;
+      //attach the updated value to the subject
+      this.productService.page$.next(this.page);
+      if(size = 0 ){
+        this.page = page - 1;
+      //attach the updated value to the subject
+        this.productService.page$.next(this.page);
+      }
+    } 
+    
+    
+   
+    
   }
 
 
