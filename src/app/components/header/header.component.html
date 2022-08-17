@@ -65,11 +65,11 @@
 
           <div class="cart-summary">
             <span class="h6">Total</span>
-            <span class="total-price h6">$XXX.XX{{getCartTotal()}}</span>
+            <span class="total-price h6">${{cartTotal}}</span>
 
             <div class="text-center cart-buttons mt-3">
               <a routerLink="/cart" class="btn btn-small btn-transparent btn-block">View Cart</a>
-              <a routerLink="/checkout" class="btn btn-small btn-main btn-block">Checkout</a>
+              <a (click)="checkout()" href="javascript:void(0)" class="btn btn-small btn-main btn-block">Checkout</a>
             </div>
           </div>
         </div>

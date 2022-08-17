@@ -52,18 +52,16 @@
               <th scope="col">Product Name</th>
               <th scope="col">Price</th>
               <th scope="col">Quantity</th>
-              <th scope="col">Approved?</th>
               <th scope="col">Purchase Date</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let o of orders">
               <th scope="row">{{o.id}}</th>
-              <td>{{o.customerId}}</td>
-              <td>{{o.productName}}</td>
-              <td>{{o.price}}</td>
+              <td>{{o.customer.id}}</td>
+              <td>{{o.product.productName}}</td>
+              <td>{{o.product.price}}</td>
               <td>{{o.quantity}}</td>
-              <td>{{o.isApproved}}</td>
               <td>{{o.purchaseDate}}</td>         
             </tr>
           </tbody>

@@ -44,8 +44,8 @@ export class AuthService {
      return this.http.get<User>(this.loginApi, httpOptions);
   }
 
-  signUp(userDto: UserDto):Observable<any> {
-    return this.http.post(this.signUpApi, userDto);
+  signUp(userDto: UserDto, balance:number):Observable<any> {
+    return this.http.post(`${this.signUpApi}?balance=${balance}`, userDto);
   }
 
 

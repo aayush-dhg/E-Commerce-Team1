@@ -83,7 +83,7 @@ export class InventoryComponent implements OnInit {
 
   deleteProduct(productId:number): void{
     this.vendorService.deleteProduct(productId).subscribe(() => {
-      this.inventory.filter(p => +(p.id!) !== +productId );
+      this.inventory = this.inventory.filter(p => p.id != productId );
       this.alertMessage = "Product has been deleted.";
       $('#successMessage').fadeToggle(0,"linear", ()=>{
         $('#successMessage').fadeToggle(5000)

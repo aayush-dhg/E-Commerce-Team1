@@ -4,6 +4,7 @@ import { Customer } from 'src/app/models/customer.model';
 import { CustomerCart } from 'src/app/models/customerCart.model';
 import { Product } from 'src/app/models/product.model';
 import { CustomerCartService } from 'src/app/services/customer-cart.service';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -20,7 +21,10 @@ export class CartComponent implements OnInit {
   role: string;
   totalPrice: number;
 
-  constructor(private customerCartService: CustomerCartService) { }
+  constructor(
+    private customerCartService: CustomerCartService,
+    private orderService:OrderService
+  ) { }
 
   ngOnInit(): void {
     this.message = '';
@@ -49,9 +53,25 @@ export class CartComponent implements OnInit {
     });
   }
 
-  onCheckout(){
-    this.customerCartService.makePurchase(this.customerCart);
-    
+  checkout():void{
+    let tempCart = this.customerCart;
+    let order;
+    tempCart.forEach(o=>{
+      order = {
+        customer: o.customer,
+        product: o.product,
+        quantity: o.quantity
+      }
+      this.orderService.addOrder(order).subscribe({
+        next: (data)=>{
+          this.customerCartService.customerCart$.next([]);
+          this.customerCartService.deleteProduct(o.product.id).subscribe({});
+        },
+        error: (data)=>{
+          console.log(data);
+        }
+      })
+    })
   }
 
 }

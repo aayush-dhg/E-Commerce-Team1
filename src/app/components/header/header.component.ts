@@ -3,6 +3,7 @@ import { Category } from 'src/app/models/category.model';
 import { CustomerCart } from 'src/app/models/customerCart.model';
 import { CustomerCartService } from 'src/app/services/customer-cart.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-header',
@@ -14,9 +15,11 @@ export class HeaderComponent implements OnInit {
   role: string;
   categories:Category[] = [];
   cart:CustomerCart[] = [];
+  cartTotal:number;
   constructor(
     private cartService:CustomerCartService,
-    private authService: AuthService
+    private authService: AuthService,
+    private orderService: OrderService
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +33,10 @@ export class HeaderComponent implements OnInit {
       next: (data)=>{
         this.cartService.customerCart$.next(data);
         this.cart = this.cartService.customerCart$.getValue();
+        this.cartTotal = 0.0;
+        this.cart.forEach(c=>{
+          this.cartTotal += c.totalPrice;
+        })
       },
       error: (data)=>{
         console.log(data);
@@ -38,6 +45,10 @@ export class HeaderComponent implements OnInit {
     this.cartService.customerCart$.subscribe({
       next: (data)=>{
         this.cart = data;
+        this.cartTotal = 0.0;
+        this.cart.forEach(c => {
+          this.cartTotal += c.totalPrice;
+        })
       }
     });
   }
@@ -54,6 +65,26 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  getCartTotal():void{}
+  checkout():void{
+    let tempCart = this.cart;
+    let order;
+    tempCart.forEach(o=>{
+      order = {
+        customer: o.customer,
+        product: o.product,
+        quantity: o.quantity
+      }
+      this.orderService.addOrder(order).subscribe({
+        next: (data)=>{
+          this.cartService.customerCart$.next([]);
+          this.cartService.deleteProduct(o.product.id).subscribe({});
+        },
+        error: (data)=>{
+          console.log(data);
+        }
+      })
+    })
+    
+  } 
 
 }
