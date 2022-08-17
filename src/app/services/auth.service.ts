@@ -12,7 +12,6 @@ export class AuthService {
   username$ = new BehaviorSubject<string>('');
   credentials$ = new BehaviorSubject<string>('');
   id$ = new BehaviorSubject<string>('');
-  role$ = new BehaviorSubject<string>('');
 
   message$ = new BehaviorSubject<string>('');
   loginApi: string;
@@ -45,8 +44,8 @@ export class AuthService {
      return this.http.get<User>(this.loginApi, httpOptions);
   }
 
-  signUp(userDto: UserDto):Observable<any> {
-    return this.http.post(this.signUpApi, userDto);
+  signUp(userDto: UserDto, balance:number):Observable<any> {
+    return this.http.post(`${this.signUpApi}?balance=${balance}`, userDto);
   }
 
 

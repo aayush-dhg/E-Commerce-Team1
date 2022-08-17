@@ -37,9 +37,10 @@ export class SignupComponent implements OnInit {
       encodedCredentials: btoa(this.signUpForm.value.username
         + '@%' + this.signUpForm.value.password)
     }
+    
     //aGFycnkrPStwb3R0ZXI=
     console.log(this.userDto);
-    this.authService.signUp(this.userDto).subscribe({
+    this.authService.signUp(this.userDto, this.signUpForm.value.balance).subscribe({
       next: (data)=> {
           this.authService.message$.next('SignUp Success, Please Login')
           this.router.navigateByUrl('/login');

@@ -16,6 +16,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class CustomerCartService {
+  
 
   customerCart$ = new BehaviorSubject<CustomerCart[]>([]);
   products$ = new BehaviorSubject<Product[]>([]);
@@ -23,6 +24,7 @@ export class CustomerCartService {
   getCartApi: string;
   deleteProductApi: string;
   addToCartApi: string;
+  makePurchaseApi: string;
   id:number;
 
   constructor(private http: HttpClient) {
@@ -30,6 +32,7 @@ export class CustomerCartService {
     this.getCartApi = environment.serverUrl+'/customer/cart';
     this.deleteProductApi = environment.serverUrl+'/customer/cart/delete'
     this.addToCartApi = environment.serverUrl+'/customer/cart'
+    this.makePurchaseApi = environment.serverUrl+'/purchase'
   }
 
   getCart(): Observable<CustomerCart[]> {
@@ -42,5 +45,9 @@ export class CustomerCartService {
 
   addToCart(pid:number):Observable<CustomerCart>{
     return this.http.post<CustomerCart>(`${this.addToCartApi}/${this.id}/${pid}`, {});
+  }
+
+  makePurchase(cart: CustomerCart[]): Observable<any> {
+    return this.http.post<any>(`${this.makePurchaseApi}/${this.id}`, cart);
   }
 }

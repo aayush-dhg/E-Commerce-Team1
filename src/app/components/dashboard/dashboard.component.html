@@ -9,10 +9,10 @@
         <div class="nav flex-column nav-pills">
           <a class="nav-link" routerLink="/profile-details">My Profile</a>
         </div>
-        <div class="nav flex-column nav-pills">
+        <div class="nav flex-column nav-pills" *ngIf="role=='vendor' ">
           <a class="nav-link" routerLink="/orders">Orders</a>
         </div>
-        <div class="nav flex-column nav-pills">
+        <div class="nav flex-column nav-pills" *ngIf="role=='vendor' ">
           <a class="nav-link" routerLink="/inventory">Inventory</a>
         </div>
         <div class="nav flex-column nav-pills" *ngIf="role=='customer' ">
@@ -24,7 +24,7 @@
       </div>
 
       <div >
-      <div class="col-12 col-md-7 col-sm-12 col-lg-9" >
+      <div class="col-12 col-md-7 col-sm-12 col-lg-9" *ngIf="role=='admin' ">
         <h1> ADMIN DASHBOARD</h1>    
        
         <mat-tab-group>

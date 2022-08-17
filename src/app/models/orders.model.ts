@@ -1,10 +1,10 @@
+import { Customer } from "./customer.model";
+import { Product } from "./product.model";
+
 export class Orders{
     id?:number;
-    vendorId:number;
-    customerId:number;
-    productName:string;
-    price:number;
+    customer:Customer;
+    product:Product;
     quantity:number;
-    isApproved:boolean;
-    purchaseDate:Date;
+    purchaseDate?:Date;
 }
