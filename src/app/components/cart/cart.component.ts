@@ -50,6 +50,7 @@ export class CartComponent implements OnInit {
   }
 
   onCheckout(){
+    this.customerCartService.makePurchase(this.customerCart);
     
   }
 
