@@ -17,13 +17,14 @@ export class InventoryComponent implements OnInit {
   product:Product;
   categories:Category[] = [];
   userId:number;
+  role: string;
 
   alertMessage:string;
 
   constructor(private vendorService: VendorService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-
+    this.role = localStorage.getItem("role");
     //get inventory
     sessionStorage.setItem("vendorId", localStorage.getItem("id"));  //TODO assign vendorId dynamically on login
     this.userId = parseInt(sessionStorage.getItem("vendorId")!);
