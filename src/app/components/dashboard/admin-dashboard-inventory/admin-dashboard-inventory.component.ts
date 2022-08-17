@@ -6,6 +6,7 @@ import { event } from 'jquery';
 import { Subject, Subscription } from 'rxjs';
 import { Customer } from 'src/app/models/customer.model';
 import { Product } from 'src/app/models/product.model';
+import { Vendor } from 'src/app/models/vendor.model';
 import { CustomerService } from 'src/app/services/customer.service';
 import { ProductService } from 'src/app/services/product.service';
 import { VendorService } from 'src/app/services/vendor.service';
@@ -22,6 +23,8 @@ export class AdminDashboardInventoryComponent implements OnInit {
   product: Product[];
   page: number;
   size: number;
+  vendor: Vendor[];
+  singleProduct: Product[];
   
   subscriptions: Subscription[];
   ProductData: Product[];
@@ -53,6 +56,17 @@ export class AdminDashboardInventoryComponent implements OnInit {
           });
       })
     );
+  }
+  getSingle(id: number){
+    this.singleProduct =[]
+    
+      this.productService.getSingleProduct(id).subscribe(data=>{
+        
+        this.productService.singleProduct$.next(data);
+      
+        console.log(this.productService.product$.value);
+      })
+
   }
   prev() {
     //read the value of page from subject

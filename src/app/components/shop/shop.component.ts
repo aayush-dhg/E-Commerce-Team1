@@ -20,6 +20,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   size: number;
   subscriptions: Subscription[];
   customerCart:CustomerCart[];
+  singleProduct: Product[];
 
 
   constructor(private productService: ProductService,
@@ -29,6 +30,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.productService.product$.next(null);
     this.subscriptions = [];
     this.size = 6;
     this.subscriptions.push(
@@ -40,7 +42,7 @@ export class ShopComponent implements OnInit, OnDestroy {
               this.product = data;
               this.productService.product$.next(this.product);
               // check if the products is being called or not
-              console.log(data);
+              //console.log(data);
             },
             error: (e) => {
               //redirect to error page
@@ -49,6 +51,18 @@ export class ShopComponent implements OnInit, OnDestroy {
       })
     );
   }
+  getSingle(id: number){
+    this.singleProduct =[]
+    
+      this.productService.getSingleProduct(id).subscribe(data=>{
+        
+        this.productService.singleProduct$.next(data);
+      
+        console.log(this.productService.product$.value);
+      })
+
+  }
+  
 
   sortPrice(flag: number): void {
     this.productService.sortPrice(this.product, flag);

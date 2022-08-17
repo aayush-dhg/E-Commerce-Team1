@@ -23,7 +23,7 @@
                 <a href="javascript:void" (click)="addToCart(product.id)"><i class="tf-ion-android-cart"></i></a>
               </div>
               <div class="product-info">
-                <h2 class="product-title h5 mb-0"><a routerLink="/product-single">{{product.productName}}</a></h2>
+                <h2 class="product-title h5 mb-0"><a routerLink="/product-single" (click)="getSingle(product.id)">{{product.productName}}</a></h2>
                 <span class="price">
                   $ {{product.price}}
                 </span>

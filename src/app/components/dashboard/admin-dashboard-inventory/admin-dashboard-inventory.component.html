@@ -38,8 +38,7 @@
                                 Quantity<i style="font-size:24px" class="fa">&#xf0dc;</i></th>
                             <th scope="col" [appSort]="product" data-order="desc" data-name="category">
                                 Category <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
-                            <th scope="col" [appSort]="product" data-order="desc" data-name="vendor">
-                                Vendor <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
+                            
                             <th scope="col" [appSort]="product" data-order="desc" data-name="sold">
                                 Sold <i style="font-size:24px" class="fa">&#xf0dc;</i></th>
                             <th scope="col">Action</th>
@@ -47,7 +46,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let product of product">
+                        <tr *ngFor = "let product of product">
                             <th scope="row">{{product.id}}</th>
                             <td>
                                 {{product.productName}}
@@ -64,14 +63,12 @@
                             <td>
                                 {{product.vendorName}}
                             </td>
-                            <td>
-
-                            </td>
+                            
 
                             <td class="row-options">
-                                <a routerLink="/order" title="View {{product.productName}} Page">View </a> <br />
-                                <a title="Save">Save</a> <br />
-                                <a title="Delete">Delete</a>
+                                <a routerLink="/order" title="View {{product.productName}} Page">Orders</a> <br />
+                                <a routerLink="/product-single" (click)="getSingle(product.id)">View</a><br />
+                                
                             </td>
                         </tr>
                     </tbody>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, ɵɵstylePropInterpolate1 } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Product, SingleProduct, Stat } from '../models/product.model';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class ProductService {
 
 
   product$ = new BehaviorSubject<Product[]>([]);
-  singleProduct$ = new BehaviorSubject<SingleProduct[]>([]);
+  singleProduct$ = new BehaviorSubject<Product>(null);
   page$ = new BehaviorSubject<number>(0);
   size$ = new BehaviorSubject<number>(5);
   stat$ = new BehaviorSubject<Boolean>(false);
@@ -27,7 +28,7 @@ export class ProductService {
     this.postApi = "http://localhost:8282/products";
     this.getAllApi = "http://localhost:8282/products";
     this.getStatsApi = "http://localhost:8282/products";
-    this.getSingleProductApi = "http://localhost:8282/product/";
+    
 
     }
 
@@ -39,8 +40,8 @@ export class ProductService {
     return this.http.get<Product[]>
     (this.getAllApi + '?page='+ page + '&size=' + size);
   }
-  getSingleProduct(id:number): Observable<Product[]>{
-    return this.http.get<Product[]>(this.getSingleProductApi + id);
+  getSingleProduct(id:number): Observable<Product>{
+    return this.http.get<Product>(`${environment.serverUrl}/product-single/${id}`);
   }
   getProductStats():Observable<Stat[]>{
     return this.http.get<Stat[]>(this.getStatsApi);
