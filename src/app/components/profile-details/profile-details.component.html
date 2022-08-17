@@ -28,16 +28,16 @@
             <a class="nav-link" routerLink="/dashboard">Dashboard</a>
           </div>
           <div class="nav flex-column nav-pills">
-            <a class="nav-link active" routerLink="/profile-details" >My Profile</a>
+            <a class="nav-link active" routerLink="/profile-details">My Profile</a>
           </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/orders" >Orders</a>
+          <div class="nav flex-column nav-pills" *ngIf="role=='vendor' ">
+            <a class="nav-link" routerLink="/orders">Orders</a>
           </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/inventory" >Inventory</a>
+          <div class="nav flex-column nav-pills" *ngIf="role=='vendor' ">
+            <a class="nav-link" routerLink="/inventory">Inventory</a>
           </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/cart" >Cart</a>
+          <div class="nav flex-column nav-pills" *ngIf="role=='customer' ">
+            <a class="nav-link" routerLink="/cart">Cart</a>
           </div>
           <div class="nav flex-column nav-pills">
             <a class="nav-link" routerLink="/">Log Out</a>
